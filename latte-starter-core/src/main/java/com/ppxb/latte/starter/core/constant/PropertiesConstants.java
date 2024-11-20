@@ -23,7 +23,6 @@
  */
 
 
-
 package com.ppxb.latte.starter.core.constant;
 
 public class PropertiesConstants {
@@ -33,6 +32,9 @@ public class PropertiesConstants {
     public static final String ENABLED = "enabled";
 
     public static final String WEB = LATTE_STARTER + StringConstants.DOT + "web";
-
+    
     public static final String WEB_CORS = WEB + StringConstants.DOT + "cors";
+
+    private PropertiesConstants() {
+    }
 }
