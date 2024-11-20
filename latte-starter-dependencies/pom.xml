@@ -246,8 +246,10 @@
         <profile>
             <id>sonar</id>
             <properties>
-                <sonar.host.url>https://sonarcloud.io</sonar.host.url>
                 <sonar.organization>ppxb</sonar.organization>
+                <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+                <sonar.projectKey>ppxb_latte-starter</sonar.projectKey>
+                <sonar.moduleKey>${project.groupId}:${project.artifactId}</sonar.moduleKey>
             </properties>
             <activation>
                 <activeByDefault>false</activeByDefault>
