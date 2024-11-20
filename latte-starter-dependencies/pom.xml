@@ -13,11 +13,13 @@
     <artifactId>latte-starter-dependencies</artifactId>
     <version>${revision}</version>
     <packaging>pom</packaging>
-    <description>Latte Starter 依赖模块</description>
+    <description>Latte Starter dependencies module</description>
 
     <properties>
         <revision>1.0-SNAPSHOT</revision>
-        <!-- Maven Plugin Versions -->
+        <hutool.version>5.8.33</hutool.version>
+        <tlog.version>1.5.2</tlog.version>
+        <!-- Maven plugin versions -->
         <flatten.version>1.6.0</flatten.version>
         <spotless.version>2.43.0</spotless.version>
         <sonar.version>3.11.0.3922</sonar.version>
@@ -25,7 +27,41 @@
 
     <dependencyManagement>
         <dependencies>
+            <!-- Hutool -->
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-bom</artifactId>
+                <version>${hutool.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
 
+            <!-- TLog -->
+            <dependency>
+                <groupId>com.yomahub</groupId>
+                <artifactId>tlog-web-spring-boot-starter</artifactId>
+                <version>${tlog.version}</version>
+            </dependency>
+
+            <!-- Latte Starter -->
+            <!-- Core Module -->
+            <dependency>
+                <groupId>com.ppxb</groupId>
+                <artifactId>latte-starter-core</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <!-- Web Module -->
+            <dependency>
+                <groupId>com.ppxb</groupId>
+                <artifactId>latte-starter-web</artifactId>
+                <version>${revision}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -153,7 +189,7 @@
                             <artifacts>
                                 <artifact>
                                     <file>
-                                        ${project.build.directory}/effective-pom/continew-starter-dependencies.xml
+                                        ${project.build.directory}/effective-pom/latte-starter-dependencies.xml
                                     </file>
                                     <type>effective-pom</type>
                                 </artifact>
@@ -165,19 +201,19 @@
         </plugins>
         <pluginManagement>
             <plugins>
-                <!-- 统一版本号插件 -->
+                <!-- Version management plugin -->
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>flatten-maven-plugin</artifactId>
                     <version>${flatten.version}</version>
                 </plugin>
-                <!-- 代码格式化插件 -->
+                <!-- Code formatted plugin -->
                 <plugin>
                     <groupId>com.diffplug.spotless</groupId>
                     <artifactId>spotless-maven-plugin</artifactId>
                     <version>${spotless.version}</version>
                 </plugin>
-                <!-- Sonar 代码质量分析插件 -->
+                <!-- Sonar plugin -->
                 <plugin>
                     <groupId>org.sonarsource.scanner.maven</groupId>
                     <artifactId>sonar-maven-plugin</artifactId>
@@ -242,7 +278,6 @@
                 </plugins>
             </build>
         </profile>
-        <!-- Sonar 代码质量分析 -->
         <profile>
             <id>sonar</id>
             <properties>

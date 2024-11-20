@@ -13,11 +13,12 @@
     <packaging>pom</packaging>
     <name>Latte Starter</name>
     <description>
-        Latte Starter 包含了一系列企业实践优化的依赖包和上层封装组件，以提高模板项目的开发速度和质量。
+        Latte Starter includes a set of enterprise practice-optimized dependencies and upper-level encapsulation
+        components to improve the speed and quality of development of template projects.
     </description>
 
     <properties>
-        <!-- Maven Environment Versions -->
+        <!-- Maven environment versions -->
         <java.version>21</java.version>
         <resource.delimiter>@</resource.delimiter>
         <maven.compiler.source>${java.version}</maven.compiler.source>
@@ -29,11 +30,13 @@
 
     <modules>
         <module>latte-starter-dependencies</module>
+        <module>latte-starter-core</module>
+        <module>latte-starter-web</module>
     </modules>
 
     <build>
         <plugins>
-            <!-- Compiler Plugin -->
+            <!-- Compiler plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -41,7 +44,7 @@
                     <compilerArgument>-parameters</compilerArgument>
                 </configuration>
             </plugin>
-            <!-- Code Formatted Plugin -->
+            <!-- Code formatted plugin -->
             <plugin>
                 <groupId>com.diffplug.spotless</groupId>
                 <artifactId>spotless-maven-plugin</artifactId>
@@ -65,7 +68,7 @@
                     </java>
                 </configuration>
             </plugin>
-            <!-- Version Management Plugin -->
+            <!-- Version management plugin -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>flatten-maven-plugin</artifactId>
