@@ -23,7 +23,6 @@
  */
 
 
-
 package com.ppxb.latte.starter.web.autoconfigure.cors;
 
 import com.ppxb.latte.starter.core.constant.PropertiesConstants;
@@ -41,6 +40,25 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
+/**
+ * CORS (跨域资源共享) 自动配置类。
+ * <p>
+ * 该配置类为Spring Web应用程序提供自动的CORS过滤配置。
+ * 满足以下条件时激活：
+ * <ul>
+ *     <li>应用程序是Web应用</li>
+ *     <li>配置属性'latte.web.cors.enabled'设置为'true'</li>
+ *     <li>容器中没有其他{@link CorsFilter}类型的Bean</li>
+ * </ul>
+ * <p>
+ * 配置支持通配符(*)和特定源站配置。
+ * 使用通配符时，出于安全考虑会自动禁用凭证支持。
+ *
+ * @author ppxb
+ * @see CorsProperties
+ * @see CorsFilter
+ * @since 1.0.0
+ */
 @Lazy
 @AutoConfiguration
 @ConditionalOnWebApplication
@@ -50,11 +68,31 @@ public class CorsAutoConfiguration {
 
     private static final Logger log = LoggerFactory.getLogger(CorsAutoConfiguration.class);
 
+    /**
+     * 预检请求响应的缓存时间（秒）。
+     * 设置为30分钟（1800秒）以减少预检请求次数。
+     */
+    private static final long MAX_AGE = 1800L;
+
+    /**
+     * 根据提供的配置属性创建和配置 {@link CorsFilter} Bean。
+     * <p>
+     * 该方法配置CORS行为的逻辑如下：
+     * <ul>
+     *     <li>设置预检响应缓存时间为30分钟</li>
+     *     <li>如果允许的源站包含通配符，则配置通配符源站模式</li>
+     *     <li>仅在配置特定源站时启用凭证支持</li>
+     *     <li>应用配置的允许方法、请求头和暴露的响应头</li>
+     * </ul>
+     *
+     * @param properties CORS配置属性
+     * @return 配置好的 {@link CorsFilter} Bean
+     */
     @Bean
     @ConditionalOnMissingBean
     public CorsFilter corsFilter(CorsProperties properties) {
         CorsConfiguration config = new CorsConfiguration();
-        config.setMaxAge(1800L);
+        config.setMaxAge(MAX_AGE);
         if (properties.getAllowedOrigins().contains(StringConstants.ASTERISK)) {
             config.addAllowedOriginPattern(StringConstants.ASTERISK);
         } else {

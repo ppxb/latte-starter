@@ -23,7 +23,6 @@
  */
 
 
-
 package com.ppxb.latte.starter.web.autoconfigure.cors;
 
 import com.ppxb.latte.starter.core.constant.PropertiesConstants;
@@ -34,19 +33,75 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * CORS (跨域资源共享) 配置属性类。
+ * <p>
+ * 该类提供了自定义应用程序CORS行为的配置选项。
+ * 所有属性都以 "latte.web.cors" 为前缀。
+ * <p>
+ * 配置示例 (application.yml):
+ * <pre>{@code
+ * latte:
+ *   web:
+ *     cors:
+ *       enabled: true
+ *       allowed-origins:
+ *         - "http://localhost:8080"
+ *         - "https://example.com"
+ *       allowed-methods:
+ *         - "GET"
+ *         - "POST"
+ *       allowed-headers:
+ *         - "Authorization"
+ *         - "Content-Type"
+ *       exposed-headers:
+ *         - "X-Custom-Header"
+ * }</pre>
+ *
+ * @author ppxb
+ * @since 1.0.0
+ */
 @ConfigurationProperties(PropertiesConstants.WEB_CORS)
 public class CorsProperties {
 
+    /**
+     * 通配符匹配的默认值，用"*"表示
+     */
     private static final List<String> ALL = Collections.singletonList(StringConstants.ASTERISK);
 
+    /**
+     * 是否启用CORS支持。
+     * <p>
+     * 默认值为 {@code false}。
+     */
     private boolean enabled = false;
 
+    /**
+     * 允许的源站列表。
+     * <p>
+     * 默认值为"*"，允许所有源站。在生产环境中，建议指定具体的源站地址而不是使用通配符。
+     */
     private List<String> allowedOrigins = new ArrayList<>(ALL);
 
+    /**
+     * 允许的HTTP方法列表。
+     * <p>
+     * 默认值为"*"，允许所有方法。可以限制为特定方法，如GET、POST等。
+     */
     private List<String> allowedMethods = new ArrayList<>(ALL);
 
+    /**
+     * CORS请求中允许的请求头列表。
+     * <p>
+     * 默认值为"*"，允许所有请求头。在生产环境中应该只配置必要的请求头。
+     */
     private List<String> allowedHeaders = new ArrayList<>(ALL);
 
+    /**
+     * 允许浏览器访问的响应头列表。
+     * <p>
+     * 默认为空。添加需要在客户端JavaScript代码中访问的响应头。
+     */
     private List<String> exposedHeaders = new ArrayList<>();
 
     public boolean isEnabled() {
