@@ -23,19 +23,31 @@
  */
 
 
+package com.ppxb.latte.starter.core.autoconfigure.project;
 
-package com.ppxb.latte.starter.core.constant;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Import;
 
-public class PropertiesConstants {
-
-    public static final String LATTE_STARTER = "latte-starter";
-
-    public static final String ENABLED = "enabled";
-
-    public static final String WEB = LATTE_STARTER + StringConstants.DOT + "web";
-
-    public static final String WEB_CORS = WEB + StringConstants.DOT + "cors";
-
-    private PropertiesConstants() {
-    }
+/**
+ * 项目基础自动配置类。
+ * <p>
+ * 该配置类提供以下功能：
+ * <ul>
+ *     <li>启用项目基础配置属性 {@link ProjectProperties}</li>
+ *     <li>自动扫描并注册 Hutool 的 Spring 工具类</li>
+ *     <li>导入 {@link cn.hutool.extra.spring.SpringUtil} 用于操作 Spring 上下文</li>
+ * </ul>
+ *
+ * @author ppxb
+ * @see ProjectProperties
+ * @see cn.hutool.extra.spring.SpringUtil
+ * @since 1.0.0
+ */
+@AutoConfiguration
+@ComponentScan("cn.hutool.extra.spring")
+@Import(cn.hutool.extra.spring.SpringUtil.class)
+@EnableConfigurationProperties(ProjectProperties.class)
+public class ProjectAutoConfiguration {
 }

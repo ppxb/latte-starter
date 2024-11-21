@@ -23,6 +23,7 @@
  */
 
 
+
 package com.ppxb.latte.starter.web.autoconfigure.cors;
 
 import com.ppxb.latte.starter.core.constant.PropertiesConstants;
