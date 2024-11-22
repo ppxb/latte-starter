@@ -23,6 +23,7 @@
  */
 
 
+
 package com.ppxb.latte.starter.core.autoconfigure.project;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -42,6 +43,10 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  *   url: "https://github.com/ppxb/latte-starter"
  *   base-package: "com.ppxb.latte"
  *   production: false
+ *   contact:
+ *      name: ppxb
+ *   license:
+ *      name: MIT
  * }</pre>
  *
  * @author ppxb
@@ -86,6 +91,16 @@ public class ProjectProperties {
      * 是否为生产环境
      */
     private boolean production;
+
+    /**
+     * 联系人
+     */
+    private Contact contact;
+
+    /**
+     * 许可协议
+     */
+    private License license;
 
     public String getName() {
         return name;
@@ -141,5 +156,98 @@ public class ProjectProperties {
 
     public void setProduction(boolean production) {
         this.production = production;
+    }
+
+    public Contact getContact() {
+        return contact;
+    }
+
+    public void setContact(Contact contact) {
+        this.contact = contact;
+    }
+
+    public License getLicense() {
+        return license;
+    }
+
+    public void setLicense(License license) {
+        this.license = license;
+    }
+
+    /**
+     * 联系人配置
+     */
+    public static class Contact {
+
+        /**
+         * 名称
+         */
+        private String name;
+
+        /**
+         * 邮箱
+         */
+        private String email;
+
+        /**
+         * URL
+         */
+        private String url;
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getEmail() {
+            return email;
+        }
+
+        public void setEmail(String email) {
+            this.email = email;
+        }
+
+        public String getUrl() {
+            return url;
+        }
+
+        public void setUrl(String url) {
+            this.url = url;
+        }
+    }
+
+    /**
+     * 许可协议配置
+     */
+    public static class License {
+
+        /**
+         * 名称
+         */
+        private String name;
+
+        /**
+         * URL
+         */
+        private String url;
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getUrl() {
+            return url;
+        }
+
+        public void setUrl(String url) {
+            this.url = url;
+        }
     }
 }

@@ -19,6 +19,7 @@
         <revision>1.0-SNAPSHOT</revision>
         <hutool.version>5.8.33</hutool.version>
         <tlog.version>1.5.2</tlog.version>
+        <knife4j.version>4.5.0</knife4j.version>
         <!-- Maven plugin versions -->
         <flatten.version>1.6.0</flatten.version>
         <spotless.version>2.43.0</spotless.version>
@@ -48,6 +49,12 @@
                 <version>${tlog.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
+                <version>${knife4j.version}</version>
+            </dependency>
+
             <!-- Latte Starter -->
             <!-- Core Module -->
             <dependency>
@@ -60,6 +67,13 @@
             <dependency>
                 <groupId>com.ppxb</groupId>
                 <artifactId>latte-starter-web</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <!-- API Doc Module -->
+            <dependency>
+                <groupId>com.ppxb</groupId>
+                <artifactId>latte-starter-api-doc</artifactId>
                 <version>${revision}</version>
             </dependency>
         </dependencies>

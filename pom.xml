@@ -32,6 +32,7 @@
         <module>latte-starter-dependencies</module>
         <module>latte-starter-core</module>
         <module>latte-starter-web</module>
+        <module>latte-starter-api-doc</module>
     </modules>
 
     <build>

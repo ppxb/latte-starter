@@ -24,31 +24,40 @@
 
 
 
-package com.ppxb.latte.starter.core.autoconfigure.project;
+package com.ppxb.latte.starter.apidoc.autoconfigure;
 
-import org.springframework.boot.autoconfigure.AutoConfiguration;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Import;
+import io.swagger.v3.oas.models.Components;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.NestedConfigurationProperty;
 
 /**
- * 项目基础自动配置类。
+ * SpringDoc扩展配置属性类。
  * <p>
- * 该配置类提供以下功能：
- * <ul>
- * <li>启用项目基础配置属性 {@link ProjectProperties}</li>
- * <li>自动扫描并注册 Hutool 的 Spring 工具类</li>
- * <li>导入 {@link cn.hutool.extra.spring.SpringUtil} 用于操作 Spring 上下文</li>
- * </ul>
+ * 该类提供了SpringDoc（OpenAPI/Swagger）文档的扩展配置选项，
+ * 主要用于配置API文档的安全方案、响应定义等组件。
+ * 所有属性都以 "springdoc" 为前缀。
  *
  * @author ppxb
- * @see ProjectProperties
- * @see cn.hutool.extra.spring.SpringUtil
+ * @see Components
  * @since 1.0.0
  */
-@AutoConfiguration
-@ComponentScan("cn.hutool.extra.spring")
-@Import(cn.hutool.extra.spring.SpringUtil.class)
-@EnableConfigurationProperties(ProjectProperties.class)
-public class ProjectAutoConfiguration {
+@ConfigurationProperties("springdoc")
+public class SpringDocExtensionProperties {
+
+    /**
+     * OpenAPI组件配置
+     * <p>
+     * 包含安全方案、响应定义、请求体定义等组件配置。
+     * 使用 {@link NestedConfigurationProperty} 注解表示这是一个嵌套的配置属性。
+     */
+    @NestedConfigurationProperty
+    private Components components;
+
+    public Components getComponents() {
+        return components;
+    }
+
+    public void setComponents(Components components) {
+        this.components = components;
+    }
 }
