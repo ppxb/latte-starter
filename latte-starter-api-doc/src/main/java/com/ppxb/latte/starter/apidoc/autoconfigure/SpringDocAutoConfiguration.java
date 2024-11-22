@@ -23,6 +23,7 @@
  */
 
 
+
 package com.ppxb.latte.starter.apidoc.autoconfigure;
 
 import cn.hutool.core.map.MapUtil;
@@ -104,8 +105,8 @@ public class SpringDocAutoConfiguration implements WebMvcConfigurer {
         registry.addResourceHandler("/favicon.ico").addResourceLocations("classpath:/");
         registry.addResourceHandler("/doc.html").addResourceLocations("classpath:/META-INF/resources/");
         registry.addResourceHandler("/webjars/**")
-                .addResourceLocations("classpath:/META-INF/resources/webjars/")
-                .setCacheControl(CacheControl.maxAge(5, TimeUnit.HOURS).cachePublic());
+            .addResourceLocations("classpath:/META-INF/resources/webjars/")
+            .setCacheControl(CacheControl.maxAge(5, TimeUnit.HOURS).cachePublic());
     }
 
     /**
@@ -131,10 +132,9 @@ public class SpringDocAutoConfiguration implements WebMvcConfigurer {
         openAPI.info(buildInfo(projectProperties));
 
         Optional.ofNullable(springDocExtensionProperties.getComponents())
-                .ifPresent(components -> configureComponents(openAPI, components));
+            .ifPresent(components -> configureComponents(openAPI, components));
         return openAPI;
     }
-
 
     /**
      * 创建OpenAPI Info实例。
@@ -144,16 +144,16 @@ public class SpringDocAutoConfiguration implements WebMvcConfigurer {
      */
     private Info buildInfo(ProjectProperties projectProperties) {
         Info info = new Info().title(String.format("%s %s", projectProperties.getName(), "API 文档"))
-                .version(projectProperties.getVersion())
-                .description(projectProperties.getDescription());
+            .version(projectProperties.getVersion())
+            .description(projectProperties.getDescription());
 
         Optional.ofNullable(projectProperties.getContact())
-                .ifPresent(contact -> info.contact(new Contact().name(contact.getName())
-                        .email(contact.getEmail())
-                        .url(contact.getUrl())));
+            .ifPresent(contact -> info.contact(new Contact().name(contact.getName())
+                .email(contact.getEmail())
+                .url(contact.getUrl())));
 
         Optional.ofNullable(projectProperties.getLicense())
-                .ifPresent(license -> info.license(new License().name(license.getName()).url(license.getUrl())));
+            .ifPresent(license -> info.license(new License().name(license.getName()).url(license.getUrl())));
 
         return info;
     }
@@ -187,8 +187,8 @@ public class SpringDocAutoConfiguration implements WebMvcConfigurer {
     @ConditionalOnMissingBean
     public GlobalOpenApiCustomizer globalOpenApiCustomizer(SpringDocExtensionProperties springDocExtensionProperties) {
         return openApi -> Optional.ofNullable(openApi.getPaths())
-                .ifPresent(paths -> paths.forEach((key, item) -> configureSecurityForPath(item, springDocExtensionProperties
-                        .getComponents())));
+            .ifPresent(paths -> paths.forEach((key, item) -> configureSecurityForPath(item, springDocExtensionProperties
+                .getComponents())));
     }
 
     private void configureSecurityForPath(PathItem pathItem, Components components) {
