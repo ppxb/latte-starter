@@ -24,20 +24,17 @@
 
 
 
-package com.ppxb.latte.starter.core.constant;
+package com.ppxb.latte.starter.web.annotation;
 
-public class PropertiesConstants {
+import com.ppxb.latte.starter.web.autoconfigure.response.GlobalResponseAutoConfiguration;
+import org.springframework.context.annotation.Import;
 
-    public static final String LATTE_STARTER = "latte-starter";
+import java.lang.annotation.*;
 
-    public static final String ENABLED = "enabled";
-
-    public static final String WEB = LATTE_STARTER + StringConstants.DOT + "web";
-
-    public static final String WEB_CORS = WEB + StringConstants.DOT + "cors";
-
-    public static final String WEB_RESPONSE = WEB + StringConstants.DOT + "response";
-
-    private PropertiesConstants() {
-    }
+@Target({ElementType.TYPE})
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+@Inherited
+@Import({GlobalResponseAutoConfiguration.class})
+public @interface EnableGlobalResponse {
 }

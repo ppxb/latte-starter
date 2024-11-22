@@ -24,20 +24,12 @@
 
 
 
-package com.ppxb.latte.starter.core.constant;
+package com.ppxb.latte.starter.web.autoconfigure.response;
 
-public class PropertiesConstants {
+import com.feiniaojin.gracefulresponse.GracefulResponseProperties;
+import com.ppxb.latte.starter.core.constant.PropertiesConstants;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 
-    public static final String LATTE_STARTER = "latte-starter";
-
-    public static final String ENABLED = "enabled";
-
-    public static final String WEB = LATTE_STARTER + StringConstants.DOT + "web";
-
-    public static final String WEB_CORS = WEB + StringConstants.DOT + "cors";
-
-    public static final String WEB_RESPONSE = WEB + StringConstants.DOT + "response";
-
-    private PropertiesConstants() {
-    }
+@ConfigurationProperties(PropertiesConstants.WEB_RESPONSE)
+public class GlobalResponseProperties extends GracefulResponseProperties {
 }
