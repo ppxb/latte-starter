@@ -23,10 +23,12 @@
  */
 
 
+
 package com.ppxb.latte.starter.web.autoconfigure.response;
 
 import com.feiniaojin.gracefulresponse.advice.AdviceSupport;
 import com.feiniaojin.gracefulresponse.advice.GrNotVoidResponseBodyAdvice;
+import com.feiniaojin.gracefulresponse.advice.GrVoidResponseBodyAdvice;
 import com.feiniaojin.gracefulresponse.advice.lifecycle.response.ResponseBodyAdvicePredicate;
 import com.feiniaojin.gracefulresponse.api.ResponseFactory;
 import com.feiniaojin.gracefulresponse.api.ResponseStatusFactory;
@@ -70,6 +72,17 @@ public class GlobalResponseAutoConfiguration {
 
     @Bean
     @ConditionalOnMissingBean
+    public GrVoidResponseBodyAdvice grVoidResponseBodyAdvice() {
+        GrVoidResponseBodyAdvice voidResponseBodyAdvice = new GrVoidResponseBodyAdvice();
+        CopyOnWriteArrayList<ResponseBodyAdvicePredicate> copyOnWriteArrayList = new CopyOnWriteArrayList<>();
+        copyOnWriteArrayList.add(voidResponseBodyAdvice);
+        voidResponseBodyAdvice.setPredicates(copyOnWriteArrayList);
+        voidResponseBodyAdvice.setResponseBodyAdviceProcessor(voidResponseBodyAdvice);
+        return voidResponseBodyAdvice;
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
     public ResponseFactory responseFactory() {
         return new DefaultResponseFactory();
     }
@@ -86,7 +99,7 @@ public class GlobalResponseAutoConfiguration {
         return new AdviceSupport();
     }
 
-//    TODO: CONTINUE
+    //    TODO: CONTINUE
 
     @PostConstruct
     public void postConstruct() {

@@ -61,9 +61,12 @@ public class R<T> implements Response {
     @Schema(description = "响应数据")
     private T data;
 
+    public R() {
+    }
+
     public R(String code, String msg) {
-        this.code = code;
-        this.msg = msg;
+        this.setCode(code);
+        this.setMsg(msg);
     }
 
     public R(String code, String msg, T data) {
