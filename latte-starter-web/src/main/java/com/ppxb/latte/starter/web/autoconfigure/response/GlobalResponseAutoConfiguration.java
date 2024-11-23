@@ -26,24 +26,32 @@
 
 package com.ppxb.latte.starter.web.autoconfigure.response;
 
-import com.feiniaojin.gracefulresponse.advice.AdviceSupport;
-import com.feiniaojin.gracefulresponse.advice.GrNotVoidResponseBodyAdvice;
-import com.feiniaojin.gracefulresponse.advice.GrVoidResponseBodyAdvice;
+import com.feiniaojin.gracefulresponse.ExceptionAliasRegister;
+import com.feiniaojin.gracefulresponse.advice.*;
+import com.feiniaojin.gracefulresponse.advice.lifecycle.exception.BeforeControllerAdviceProcess;
+import com.feiniaojin.gracefulresponse.advice.lifecycle.exception.ControllerAdvicePredicate;
 import com.feiniaojin.gracefulresponse.advice.lifecycle.response.ResponseBodyAdvicePredicate;
 import com.feiniaojin.gracefulresponse.api.ResponseFactory;
 import com.feiniaojin.gracefulresponse.api.ResponseStatusFactory;
 import com.feiniaojin.gracefulresponse.defaults.DefaultResponseFactory;
 import com.feiniaojin.gracefulresponse.defaults.DefaultResponseStatusFactoryImpl;
+import com.ppxb.latte.starter.core.constant.PropertiesConstants;
 import com.ppxb.latte.starter.core.util.GeneralPropertySourceFactory;
 import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springdoc.core.parsers.ReturnTypeParser;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.support.ResourceBundleMessageSource;
 
+import java.util.Locale;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 @Configuration(proxyBeanMethods = false)
@@ -62,23 +70,97 @@ public class GlobalResponseAutoConfiguration {
     @Bean
     @ConditionalOnMissingBean
     public GrNotVoidResponseBodyAdvice grNotVoidResponseBodyAdvice() {
-        GrNotVoidResponseBodyAdvice notVoidResponseBodyAdvice = new GrNotVoidResponseBodyAdvice();
-        CopyOnWriteArrayList<ResponseBodyAdvicePredicate> copyOnWriteArrayList = new CopyOnWriteArrayList<>();
-        copyOnWriteArrayList.add(notVoidResponseBodyAdvice);
-        notVoidResponseBodyAdvice.setPredicates(copyOnWriteArrayList);
-        notVoidResponseBodyAdvice.setResponseBodyAdviceProcessor(notVoidResponseBodyAdvice);
-        return notVoidResponseBodyAdvice;
+        GrNotVoidResponseBodyAdvice advice = new GrNotVoidResponseBodyAdvice();
+        CopyOnWriteArrayList<ResponseBodyAdvicePredicate> predicates = new CopyOnWriteArrayList<>();
+        predicates.add(advice);
+        advice.setPredicates(predicates);
+        advice.setResponseBodyAdviceProcessor(advice);
+        return advice;
     }
 
     @Bean
     @ConditionalOnMissingBean
     public GrVoidResponseBodyAdvice grVoidResponseBodyAdvice() {
-        GrVoidResponseBodyAdvice voidResponseBodyAdvice = new GrVoidResponseBodyAdvice();
-        CopyOnWriteArrayList<ResponseBodyAdvicePredicate> copyOnWriteArrayList = new CopyOnWriteArrayList<>();
-        copyOnWriteArrayList.add(voidResponseBodyAdvice);
-        voidResponseBodyAdvice.setPredicates(copyOnWriteArrayList);
-        voidResponseBodyAdvice.setResponseBodyAdviceProcessor(voidResponseBodyAdvice);
-        return voidResponseBodyAdvice;
+        GrVoidResponseBodyAdvice advice = new GrVoidResponseBodyAdvice();
+        CopyOnWriteArrayList<ResponseBodyAdvicePredicate> predicates = new CopyOnWriteArrayList<>();
+        predicates.add(advice);
+        advice.setPredicates(predicates);
+        advice.setResponseBodyAdviceProcessor(advice);
+        return advice;
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
+    public BeforeControllerAdviceProcess beforeControllerAdviceProcess() {
+        return new BeforeControllerAdviceProcessImpl(globalResponseProperties);
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
+    public FrameworkExceptionAdvice frameworkExceptionAdvice(BeforeControllerAdviceProcess adviceProcess) {
+        FrameworkExceptionAdvice advice = new FrameworkExceptionAdvice();
+        advice.setRejectStrategy(new DefaultRejectStrategyImpl());
+        advice.setControllerAdviceProcessor(advice);
+        advice.setBeforeControllerAdviceProcess(adviceProcess);
+        advice.setControllerAdviceHttpProcessor(advice);
+        return advice;
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
+    public DataExceptionAdvice dataExceptionAdvice(BeforeControllerAdviceProcess adviceProcess) {
+        DataExceptionAdvice advice = new DataExceptionAdvice();
+        advice.setRejectStrategy(new DefaultRejectStrategyImpl());
+        advice.setControllerAdviceProcessor(advice);
+        advice.setBeforeControllerAdviceProcess(adviceProcess);
+        advice.setControllerAdviceHttpProcessor(advice);
+        return advice;
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
+    public DefaultGlobalExceptionAdvice defaultGlobalExceptionAdvice(BeforeControllerAdviceProcess adviceProcess) {
+        DefaultGlobalExceptionAdvice advice = new DefaultGlobalExceptionAdvice();
+        advice.setRejectStrategy(new DefaultRejectStrategyImpl());
+        CopyOnWriteArrayList<ControllerAdvicePredicate> predicates = new CopyOnWriteArrayList<>();
+        predicates.add(advice);
+        advice.setPredicates(predicates);
+        advice.setControllerAdviceProcessor(advice);
+        advice.setBeforeControllerAdviceProcess(adviceProcess);
+        advice.setControllerAdviceHttpProcessor(advice);
+        return advice;
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
+    public DefaultValidationExceptionAdvice defaultValidationExceptionAdvice(BeforeControllerAdviceProcess adviceProcess) {
+        DefaultValidationExceptionAdvice advice = new DefaultValidationExceptionAdvice();
+        advice.setRejectStrategy(new DefaultRejectStrategyImpl());
+        advice.setControllerAdviceProcessor(advice);
+        advice.setBeforeControllerAdviceProcess(adviceProcess);
+        advice.setControllerAdviceHttpProcessor(advice);
+        return advice;
+    }
+
+    @Bean
+    @ConditionalOnProperty(prefix = PropertiesConstants.WEB_RESPONSE, name = "i18n", havingValue = "true")
+    public GrI18nResponseBodyAdvice grI18nResponseBodyAdvice() {
+        GrI18nResponseBodyAdvice advice = new GrI18nResponseBodyAdvice();
+        CopyOnWriteArrayList<ResponseBodyAdvicePredicate> predicates = new CopyOnWriteArrayList<>();
+        predicates.add(advice);
+        advice.setPredicates(predicates);
+        advice.setResponseBodyAdviceProcessor(advice);
+        return advice;
+    }
+
+    @Bean
+    @ConditionalOnProperty(prefix = PropertiesConstants.WEB_RESPONSE, name = "i18n", havingValue = "true")
+    public MessageSource messageSource() {
+        ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
+        messageSource.setBasenames("i18n", "i18n/empty-messages");
+        messageSource.setDefaultEncoding("UTF-8");
+        messageSource.setDefaultLocale(Locale.CHINA);
+        return messageSource;
     }
 
     @Bean
@@ -95,11 +177,22 @@ public class GlobalResponseAutoConfiguration {
 
     @Bean
     @ConditionalOnMissingBean
+    public ExceptionAliasRegister exceptionAliasRegister() {
+        return new ExceptionAliasRegister();
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
     public AdviceSupport adviceSupport() {
         return new AdviceSupport();
     }
 
-    //    TODO: CONTINUE
+    @Bean
+    @ConditionalOnClass(ReturnTypeParser.class)
+    @ConditionalOnMissingBean
+    public ApiDocGlobalResponseHandler apiDocGlobalResponseHandler() {
+        return new ApiDocGlobalResponseHandler(globalResponseProperties);
+    }
 
     @PostConstruct
     public void postConstruct() {
