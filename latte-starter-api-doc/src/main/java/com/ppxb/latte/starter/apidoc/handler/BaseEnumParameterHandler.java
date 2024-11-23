@@ -23,6 +23,7 @@
  */
 
 
+
 package com.ppxb.latte.starter.apidoc.handler;
 
 import cn.hutool.core.text.CharSequenceUtil;
@@ -72,10 +73,8 @@ public class BaseEnumParameterHandler implements ParameterCustomizer, PropertyCu
     }
 
     private void configureSchema(Schema schema, Class<?> enumClass) {
-        BaseEnum[] enums = (BaseEnum[]) enumClass.getEnumConstants();
-        List<String> valueList = Arrays.stream(enums)
-                .map(e -> e.getValue().toString())
-                .toList();
+        BaseEnum[] enums = (BaseEnum[])enumClass.getEnumConstants();
+        List<String> valueList = Arrays.stream(enums).map(e -> e.getValue().toString()).toList();
         String enumValueType = DocUtils.getEnumValueTypeAsString(enumClass);
         schema.setEnum(valueList);
         schema.setType(enumValueType);

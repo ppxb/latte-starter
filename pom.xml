@@ -33,6 +33,8 @@
         <module>latte-starter-core</module>
         <module>latte-starter-web</module>
         <module>latte-starter-api-doc</module>
+        <module>latte-starter-log</module>
+        <module>latte-starter-json</module>
     </modules>
 
     <build>

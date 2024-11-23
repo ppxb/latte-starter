@@ -41,11 +41,16 @@
             <artifactId>graceful-response</artifactId>
         </dependency>
 
-        <!-- Latte Start Core -->
+        <!-- API Doc Module -->
         <dependency>
             <groupId>com.ppxb</groupId>
             <artifactId>latte-starter-api-doc</artifactId>
             <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>com.ppxb</groupId>
+            <artifactId>latte-starter-json-jackson</artifactId>
         </dependency>
     </dependencies>
 </project>

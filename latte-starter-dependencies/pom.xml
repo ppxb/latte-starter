@@ -21,6 +21,7 @@
         <tlog.version>1.5.2</tlog.version>
         <knife4j.version>4.5.0</knife4j.version>
         <graceful-response.version>5.0.4-boot3</graceful-response.version>
+        <ip2region.version>3.3.5</ip2region.version>
         <!-- Maven plugin versions -->
         <flatten.version>1.6.0</flatten.version>
         <spotless.version>2.43.0</spotless.version>
@@ -63,6 +64,13 @@
                 <version>${graceful-response.version}</version>
             </dependency>
 
+            <!-- Ip2region -->
+            <dependency>
+                <groupId>net.dreamlu</groupId>
+                <artifactId>mica-ip2region</artifactId>
+                <version>${ip2region.version}</version>
+            </dependency>
+
             <!-- Latte Starter -->
             <!-- Core Module -->
             <dependency>
@@ -82,6 +90,19 @@
             <dependency>
                 <groupId>com.ppxb</groupId>
                 <artifactId>latte-starter-api-doc</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <!-- Log Module - Core Module -->
+            <dependency>
+                <groupId>com.ppxb</groupId>
+                <artifactId>latte-starter-log-core</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.ppxb</groupId>
+                <artifactId>latte-starter-json-jackson</artifactId>
                 <version>${revision}</version>
             </dependency>
         </dependencies>
