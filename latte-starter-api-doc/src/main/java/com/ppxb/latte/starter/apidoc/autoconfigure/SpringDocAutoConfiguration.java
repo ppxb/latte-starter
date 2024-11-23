@@ -27,6 +27,7 @@
 package com.ppxb.latte.starter.apidoc.autoconfigure;
 
 import cn.hutool.core.map.MapUtil;
+import com.ppxb.latte.starter.apidoc.handler.BaseEnumParameterHandler;
 import com.ppxb.latte.starter.apidoc.handler.OpenAPIHandler;
 import com.ppxb.latte.starter.core.autoconfigure.project.ProjectProperties;
 import com.ppxb.latte.starter.core.util.GeneralPropertySourceFactory;
@@ -233,7 +234,11 @@ public class SpringDocAutoConfiguration implements WebMvcConfigurer {
         return new OpenAPIHandler(openAPI, securityService, springDocConfigProperties, propertyResolverUtils, openApiBuilderCustomizers, serverBaseUrlCustomizers, javadocProvider);
     }
 
-    // TODO: ENUMS HANDLER
+    @Bean
+    @ConditionalOnMissingBean
+    public BaseEnumParameterHandler customParameterCustomizer() {
+        return new BaseEnumParameterHandler();
+    }
 
     @PostConstruct
     public void postConstruct() {
