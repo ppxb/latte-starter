@@ -22,6 +22,7 @@
         <knife4j.version>4.5.0</knife4j.version>
         <graceful-response.version>5.0.4-boot3</graceful-response.version>
         <ip2region.version>3.3.5</ip2region.version>
+        <ttl.version>2.14.5</ttl.version>
         <!-- Maven plugin versions -->
         <flatten.version>1.6.0</flatten.version>
         <spotless.version>2.43.0</spotless.version>
@@ -54,10 +55,13 @@
             <!-- Knife4J -->
             <dependency>
                 <groupId>com.github.xiaoymin</groupId>
-                <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
+                <artifactId>knife4j-dependencies</artifactId>
                 <version>${knife4j.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
 
+            <!-- Graceful Response -->
             <dependency>
                 <groupId>com.feiniaojin</groupId>
                 <artifactId>graceful-response</artifactId>
@@ -69,6 +73,13 @@
                 <groupId>net.dreamlu</groupId>
                 <artifactId>mica-ip2region</artifactId>
                 <version>${ip2region.version}</version>
+            </dependency>
+
+            <!-- TTL -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>transmittable-thread-local</artifactId>
+                <version>${ttl.version}</version>
             </dependency>
 
             <!-- Latte Starter -->
@@ -100,6 +111,14 @@
                 <version>${revision}</version>
             </dependency>
 
+            <!-- Log Module - Interceptor Module -->
+            <dependency>
+                <groupId>com.ppxb</groupId>
+                <artifactId>latte-starter-log-interceptor</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <!-- JSON Module - Jackson -->
             <dependency>
                 <groupId>com.ppxb</groupId>
                 <artifactId>latte-starter-json-jackson</artifactId>

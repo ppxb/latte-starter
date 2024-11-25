@@ -23,6 +23,7 @@
  */
 
 
+
 package com.ppxb.latte.starter.log.core.model;
 
 import cn.hutool.core.text.CharSequenceUtil;
@@ -48,7 +49,7 @@ public class LogRequest {
 
     private String body;
 
-    private Map<String, String> param;
+    private Map<String, Object> param;
 
     private String address;
 
@@ -63,22 +64,23 @@ public class LogRequest {
         this.headers = includes.contains(Include.REQUEST_HEADERS) ? request.getHeaders() : null;
         if (includes.contains(Include.REQUEST_BODY)) {
             this.body = request.getBody();
-        } else if (includes.contains(Include.REQUEST_PARAM)) {
+        }
+        if (includes.contains(Include.REQUEST_PARAM)) {
             this.param = request.getParam();
         }
         this.address = includes.contains(Include.IP_ADDRESS)
-                ? ExceptionUtils.exToNull(() -> IpUtils.getIpv4Address(this.ip))
-                : null;
+            ? ExceptionUtils.exToNull(() -> IpUtils.getIpv4Address(this.ip))
+            : null;
         if (null == this.headers) {
             return;
         }
 
         String userAgentString = this.headers.entrySet()
-                .stream()
-                .filter(header -> HttpHeaders.USER_AGENT.equalsIgnoreCase(header.getKey()))
-                .map(Map.Entry::getValue)
-                .findFirst()
-                .orElse(null);
+            .stream()
+            .filter(header -> HttpHeaders.USER_AGENT.equalsIgnoreCase(header.getKey()))
+            .map(Map.Entry::getValue)
+            .findFirst()
+            .orElse(null);
         if (CharSequenceUtil.isNotBlank(userAgentString)) {
             this.browser = includes.contains(Include.BROWSER) ? ServletUtils.getBrowser(userAgentString) : null;
             this.os = includes.contains(Include.OS) ? ServletUtils.getOs(userAgentString) : null;
@@ -125,11 +127,11 @@ public class LogRequest {
         this.body = body;
     }
 
-    public Map<String, String> getParam() {
+    public Map<String, Object> getParam() {
         return param;
     }
 
-    public void setParam(Map<String, String> param) {
+    public void setParam(Map<String, Object> param) {
         this.param = param;
     }
 
@@ -156,6 +158,4 @@ public class LogRequest {
     public void setOs(String os) {
         this.os = os;
     }
-
-//    TODO: LOG CORE MODULE
 }

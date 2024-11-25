@@ -13,6 +13,7 @@
     
     <modules>
         <module>latte-starter-log-core</module>
+        <module>latte-starter-log-interceptor</module>
     </modules>
 
     <dependencies>

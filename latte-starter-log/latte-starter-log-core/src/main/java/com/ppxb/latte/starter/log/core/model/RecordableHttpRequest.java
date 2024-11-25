@@ -41,5 +41,5 @@ public interface RecordableHttpRequest {
 
     String getBody();
 
-    Map<String, String> getParam();
+    Map<String, Object> getParam();
 }

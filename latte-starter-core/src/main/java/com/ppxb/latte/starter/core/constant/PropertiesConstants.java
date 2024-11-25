@@ -38,6 +38,8 @@ public class PropertiesConstants {
 
     public static final String WEB_RESPONSE = WEB + StringConstants.DOT + "response";
 
+    public static final String LOG = LATTE_STARTER + StringConstants.DOT + "log";
+
     private PropertiesConstants() {
     }
 }

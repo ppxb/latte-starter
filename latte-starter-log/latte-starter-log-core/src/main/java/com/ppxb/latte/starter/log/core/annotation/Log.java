@@ -24,17 +24,24 @@
 
 
 
-package com.ppxb.latte.starter.log.core.model;
+package com.ppxb.latte.starter.log.core.annotation;
 
-import java.util.Map;
+import com.ppxb.latte.starter.log.core.enums.Include;
 
-public interface RecordableHttpResponse {
+import java.lang.annotation.*;
 
-    int getStatus();
+@Target({ElementType.METHOD, ElementType.TYPE})
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+public @interface Log {
 
-    Map<String, String> getHeaders();
+    String value() default "";
 
-    String getBody();
+    String module() default "";
 
-    Map<String, Object> getParam();
+    Include[] includes() default {};
+
+    Include[] excludes() default {};
+
+    boolean ignore() default false;
 }

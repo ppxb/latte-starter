@@ -24,17 +24,18 @@
 
 
 
-package com.ppxb.latte.starter.log.core.model;
+package com.ppxb.latte.starter.log.core.dao;
 
-import java.util.Map;
+import com.ppxb.latte.starter.log.core.model.LogRecord;
 
-public interface RecordableHttpResponse {
+import java.util.Collections;
+import java.util.List;
 
-    int getStatus();
+public interface LogDao {
 
-    Map<String, String> getHeaders();
+    default List<LogRecord> list() {
+        return Collections.emptyList();
+    }
 
-    String getBody();
-
-    Map<String, Object> getParam();
+    void add(LogRecord logRecord);
 }

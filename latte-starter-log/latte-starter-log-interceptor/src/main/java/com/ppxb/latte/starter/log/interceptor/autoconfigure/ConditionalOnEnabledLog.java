@@ -24,17 +24,16 @@
 
 
 
-package com.ppxb.latte.starter.log.core.model;
+package com.ppxb.latte.starter.log.interceptor.autoconfigure;
 
-import java.util.Map;
+import com.ppxb.latte.starter.core.constant.PropertiesConstants;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 
-public interface RecordableHttpResponse {
+import java.lang.annotation.*;
 
-    int getStatus();
-
-    Map<String, String> getHeaders();
-
-    String getBody();
-
-    Map<String, Object> getParam();
+@Target({ElementType.TYPE, ElementType.METHOD})
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+@ConditionalOnProperty(prefix = PropertiesConstants.LOG, name = PropertiesConstants.ENABLED, havingValue = "true", matchIfMissing = true)
+public @interface ConditionalOnEnabledLog {
 }

@@ -33,6 +33,12 @@
             <artifactId>hutool-core</artifactId>
         </dependency>
 
+        <!-- Hutool JSON-->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-json</artifactId>
+        </dependency>
+
         <!-- Hutool Extra -->
         <dependency>
             <groupId>cn.hutool</groupId>
