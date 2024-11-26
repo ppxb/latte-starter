@@ -1,0 +1,26 @@
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.ppxb</groupId>
+        <artifactId>latte-starter</artifactId>
+        <version>${revision}</version>
+    </parent>
+
+    <artifactId>latte-starter-cache</artifactId>
+    <packaging>pom</packaging>
+    <description>Latte Starter 缓存模块</description>
+
+    <modules>
+        <module>latte-starter-cache-redisson</module>
+        <module>latte-starter-cache-jetcache</module>
+        <module>latte-starter-cache-springcache</module>
+    </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.ppxb</groupId>
+            <artifactId>latte-starter-core</artifactId>
+        </dependency>
+    </dependencies>
+</project>
