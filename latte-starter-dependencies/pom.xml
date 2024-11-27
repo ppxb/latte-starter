@@ -27,6 +27,7 @@
         <jetcache.version>2.7.7</jetcache.version>
         <sa-token.version>1.39.0</sa-token.version>
         <just-auth.version>1.16.6</just-auth.version>
+        <easy-excel.version>3.3.4</easy-excel.version>
         <!-- Maven plugin versions -->
         <flatten.version>1.6.0</flatten.version>
         <spotless.version>2.43.0</spotless.version>
@@ -49,6 +50,7 @@
                 <version>${hutool.version}</version>
             </dependency>
 
+            <!-- FIXME: CVE ISSUES SO THE DEPENDENCY SHOULD BE REPLACED -->
             <!-- TLog -->
             <dependency>
                 <groupId>com.yomahub</groupId>
@@ -146,6 +148,12 @@
                 </exclusions>
             </dependency>
 
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>easyexcel</artifactId>
+                <version>${easy-excel.version}</version>
+            </dependency>
+
             <!-- Latte Starter -->
             <!-- Core Module -->
             <dependency>
@@ -207,6 +215,27 @@
             <dependency>
                 <groupId>com.ppxb</groupId>
                 <artifactId>latte-starter-cache-springcache</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <!-- Auth Module - SaToken -->
+            <dependency>
+                <groupId>com.ppxb</groupId>
+                <artifactId>latte-starter-auth-satoken</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <!-- Auth Module - Just Auth -->
+            <dependency>
+                <groupId>com.ppxb</groupId>
+                <artifactId>latte-starter-auth-justauth</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <!-- File Module - Excel -->
+            <dependency>
+                <groupId>com.ppxb</groupId>
+                <artifactId>latte-starter-file-excel</artifactId>
                 <version>${revision}</version>
             </dependency>
         </dependencies>

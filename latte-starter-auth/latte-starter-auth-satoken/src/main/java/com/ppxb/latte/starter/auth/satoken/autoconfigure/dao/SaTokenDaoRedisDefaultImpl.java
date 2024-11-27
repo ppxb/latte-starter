@@ -23,6 +23,7 @@
  */
 
 
+
 package com.ppxb.latte.starter.auth.satoken.autoconfigure.dao;
 
 import cn.dev33.satoken.dao.SaTokenDao;

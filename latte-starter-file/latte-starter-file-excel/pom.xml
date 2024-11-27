@@ -1,0 +1,24 @@
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.ppxb</groupId>
+        <artifactId>latte-starter-file</artifactId>
+        <version>${revision}</version>
+    </parent>
+
+    <artifactId>latte-starter-file-excel</artifactId>
+    <description>Latte Starter 文件处理模块 - Excel</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>easyexcel</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+        </dependency>
+    </dependencies>
+</project>
