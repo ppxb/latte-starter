@@ -238,6 +238,13 @@
                 <artifactId>latte-starter-file-excel</artifactId>
                 <version>${revision}</version>
             </dependency>
+
+            <!-- Storage Module - Local -->
+            <dependency>
+                <groupId>com.ppxb</groupId>
+                <artifactId>latte-starter-storage-local</artifactId>
+                <version>${revision}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

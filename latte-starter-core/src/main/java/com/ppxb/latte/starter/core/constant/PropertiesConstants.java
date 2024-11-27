@@ -40,6 +40,10 @@ public class PropertiesConstants {
 
     public static final String LOG = LATTE_STARTER + StringConstants.DOT + "log";
 
+    public static final String STORAGE = LATTE_STARTER + StringConstants.DOT + "storage";
+
+    public static final String STORAGE_LOCAL = STORAGE + StringConstants.DOT + "local";
+
     private PropertiesConstants() {
     }
 }
