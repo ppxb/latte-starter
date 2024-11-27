@@ -32,9 +32,9 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.core.Ordered;
+import org.springframework.lang.NonNull;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.util.ContentCachingRequestWrapper;
 import org.springframework.web.util.ContentCachingResponseWrapper;
@@ -59,9 +59,9 @@ public class LogFilter extends OncePerRequestFilter implements Ordered {
     }
 
     @Override
-    protected void doFilterInternal(@NotNull HttpServletRequest request,
-                                    @NotNull HttpServletResponse response,
-                                    @NotNull FilterChain filterChain) throws ServletException, IOException {
+    protected void doFilterInternal(@NonNull HttpServletRequest request,
+                                    @NonNull HttpServletResponse response,
+                                    @NonNull FilterChain filterChain) throws ServletException, IOException {
         if (!this.shouldFilter(request)) {
             filterChain.doFilter(request, response);
             return;
@@ -103,14 +103,6 @@ public class LogFilter extends OncePerRequestFilter implements Ordered {
         } catch (URISyntaxException e) {
             return false;
         }
-    }
-
-    private boolean isRequestWrapper(HttpServletRequest request) {
-        return !(request instanceof ContentCachingRequestWrapper);
-    }
-
-    private boolean isResponseWrapper(HttpServletResponse response) {
-        return !(response instanceof ContentCachingResponseWrapper);
     }
 
     private void updateResponse(HttpServletResponse response) throws IOException {

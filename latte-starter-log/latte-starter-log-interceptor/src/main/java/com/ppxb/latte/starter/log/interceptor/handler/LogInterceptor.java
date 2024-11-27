@@ -38,9 +38,9 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.lang.NonNull;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 
@@ -81,9 +81,9 @@ public class LogInterceptor implements HandlerInterceptor {
      * @return true表示继续处理，false表示中断处理
      */
     @Override
-    public boolean preHandle(@NotNull HttpServletRequest request,
-                             @NotNull HttpServletResponse response,
-                             @NotNull Object handler) throws Exception {
+    public boolean preHandle(@NonNull HttpServletRequest request,
+                             @NonNull HttpServletResponse response,
+                             @NonNull Object handler) {
         Instant startTime = Instant.now();
         if (Boolean.TRUE.equals(logProperties.getIsPrint())) {
             log.info("[{}] {}", request.getMethod(), request.getRequestURI());
@@ -106,9 +106,9 @@ public class LogInterceptor implements HandlerInterceptor {
      * @param ex       处理过程中发生的异常
      */
     @Override
-    public void afterCompletion(@NotNull HttpServletRequest request,
-                                @NotNull HttpServletResponse response,
-                                @NotNull Object handler,
+    public void afterCompletion(@NonNull HttpServletRequest request,
+                                @NonNull HttpServletResponse response,
+                                @NonNull Object handler,
                                 Exception ex) {
         try {
             Instant endTime = Instant.now();

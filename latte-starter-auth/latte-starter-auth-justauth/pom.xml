@@ -1,0 +1,29 @@
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.ppxb</groupId>
+        <artifactId>latte-starter-auth</artifactId>
+        <version>${revision}</version>
+    </parent>
+
+    <artifactId>latte-starter-auth-justauth</artifactId>
+    <description>Latte Starter 认证模块 - JustAuth</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>me.zhyd.oauth</groupId>
+            <artifactId>JustAuth</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.xkcoding.justauth</groupId>
+            <artifactId>justauth-spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.ppxb</groupId>
+            <artifactId>latte-starter-cache-redisson</artifactId>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
+</project>

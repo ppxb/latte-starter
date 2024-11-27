@@ -36,6 +36,7 @@
         <module>latte-starter-log</module>
         <module>latte-starter-json</module>
         <module>latte-starter-cache</module>
+        <module>latte-starter-auth</module>
     </modules>
 
     <build>
