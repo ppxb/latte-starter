@@ -23,6 +23,7 @@
  */
 
 
+
 package com.ppxb.latte.starter.core.constant;
 
 public class PropertiesConstants {
