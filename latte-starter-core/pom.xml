@@ -8,7 +8,7 @@
     </parent>
 
     <artifactId>latte-starter-core</artifactId>
-    <description>Latte Starter core module</description>
+    <description>Latte Starter 核心模块</description>
 
     <dependencies>
         <!-- Spring Boot -->
@@ -19,6 +19,13 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
+        </dependency>
+
+        <!-- Hibernate Validator -->
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <optional>true</optional>
         </dependency>
 
         <!-- Ip2region -->

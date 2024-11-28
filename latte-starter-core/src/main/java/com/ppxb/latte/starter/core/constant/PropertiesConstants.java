@@ -23,7 +23,6 @@
  */
 
 
-
 package com.ppxb.latte.starter.core.constant;
 
 public class PropertiesConstants {
@@ -43,6 +42,10 @@ public class PropertiesConstants {
     public static final String STORAGE = LATTE_STARTER + StringConstants.DOT + "storage";
 
     public static final String STORAGE_LOCAL = STORAGE + StringConstants.DOT + "local";
+
+    public static final String SECURITY = LATTE_STARTER + StringConstants.DOT + "security";
+
+    public static final String SECURITY_PASSWORD = SECURITY + StringConstants.DOT + "password";
 
     private PropertiesConstants() {
     }

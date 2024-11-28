@@ -39,6 +39,7 @@
         <module>latte-starter-auth</module>
         <module>latte-starter-file</module>
         <module>latte-starter-storage</module>
+        <module>latte-starter-security</module>
     </modules>
 
     <build>

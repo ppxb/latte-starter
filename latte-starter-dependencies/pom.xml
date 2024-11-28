@@ -28,6 +28,7 @@
         <sa-token.version>1.39.0</sa-token.version>
         <just-auth.version>1.16.6</just-auth.version>
         <easy-excel.version>3.3.4</easy-excel.version>
+        <mybatis-plus.version>3.5.8</mybatis-plus.version>
         <!-- Maven plugin versions -->
         <flatten.version>1.6.0</flatten.version>
         <spotless.version>2.43.0</spotless.version>
@@ -148,12 +149,29 @@
                 </exclusions>
             </dependency>
 
+            <!-- Easy Excel -->
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>easyexcel</artifactId>
                 <version>${easy-excel.version}</version>
             </dependency>
 
+            <!-- MyBatis Plus -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-core</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-extension</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
             <!-- Latte Starter -->
             <!-- Core Module -->
             <dependency>
