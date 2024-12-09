@@ -15,6 +15,7 @@
         <module>latte-starter-security-password</module>
         <module>latte-starter-security-mask</module>
         <module>latte-starter-security-crypto</module>
+        <module>latte-starter-security-limiter</module>
     </modules>
 
     <dependencies>

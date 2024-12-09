@@ -172,6 +172,7 @@
                 <artifactId>mybatis-plus-extension</artifactId>
                 <version>${mybatis-plus.version}</version>
             </dependency>
+
             <!-- Latte Starter -->
             <!-- Core Module -->
             <dependency>
@@ -261,6 +262,34 @@
             <dependency>
                 <groupId>com.ppxb</groupId>
                 <artifactId>latte-starter-storage-local</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <!-- Security Module - Crypto -->
+            <dependency>
+                <groupId>com.ppxb</groupId>
+                <artifactId>latte-starter-security-crypto</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <!-- Security Module - Mask -->
+            <dependency>
+                <groupId>com.ppxb</groupId>
+                <artifactId>latte-starter-security-mask</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <!-- Security Module - Password Encryptor -->
+            <dependency>
+                <groupId>com.ppxb</groupId>
+                <artifactId>latte-starter-security-password</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <!-- Security Module - Limiter -->
+            <dependency>
+                <groupId>com.ppxb</groupId>
+                <artifactId>latte-starter-security-limiter</artifactId>
                 <version>${revision}</version>
             </dependency>
         </dependencies>

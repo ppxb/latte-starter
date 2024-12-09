@@ -1,3 +1,29 @@
+/*
+ * MIT License
+ *
+ * Copyright (c) 2024 ppxb
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
+
+
 package com.ppxb.latte.starter.security.mask.core;
 
 import cn.hutool.core.text.CharSequenceUtil;
@@ -37,8 +63,8 @@ public class JsonMaskSerializer extends JsonSerializer<String> implements Contex
         }
         Class<? extends IMaskStrategy> strategyClass = jsonMask.strategy();
         IMaskStrategy maskStrategy = strategyClass != IMaskStrategy.class
-                ? SpringUtil.getBean(strategyClass)
-                : jsonMask.value();
+            ? SpringUtil.getBean(strategyClass)
+            : jsonMask.value();
         jsonGenerator.writeString(maskStrategy.mask(str, jsonMask.character(), jsonMask.left(), jsonMask.right()));
     }
 
@@ -51,10 +77,8 @@ public class JsonMaskSerializer extends JsonSerializer<String> implements Contex
         if (!Objects.equals(beanProperty.getType().getRawClass(), String.class)) {
             return serializerProvider.findValueSerializer(beanProperty.getType(), beanProperty);
         }
-        JsonMask jsonMaskAnnotation = ObjectUtil.defaultIfNull(
-                beanProperty.getAnnotation(JsonMask.class),
-                beanProperty.getContextAnnotation(JsonMask.class)
-        );
+        JsonMask jsonMaskAnnotation = ObjectUtil.defaultIfNull(beanProperty.getAnnotation(JsonMask.class), beanProperty
+            .getContextAnnotation(JsonMask.class));
         if (null == jsonMaskAnnotation) {
             return serializerProvider.findValueSerializer(beanProperty.getType(), beanProperty);
         }

@@ -24,34 +24,45 @@
 
 
 
-package com.ppxb.latte.starter.core.constant;
+package com.ppxb.latte.starter.core.util.expression;
 
-public class PropertiesConstants {
+import java.lang.reflect.Method;
 
-    public static final String LATTE_STARTER = "latte-starter";
+public class ExpressionInvokeContext {
 
-    public static final String ENABLED = "enabled";
+    private Method method;
 
-    public static final String WEB = LATTE_STARTER + StringConstants.DOT + "web";
+    private Object[] args;
 
-    public static final String WEB_CORS = WEB + StringConstants.DOT + "cors";
+    private Object target;
 
-    public static final String WEB_RESPONSE = WEB + StringConstants.DOT + "response";
+    public ExpressionInvokeContext(Method method, Object[] args, Object target) {
+        this.method = method;
+        this.args = args;
+        this.target = target;
+    }
 
-    public static final String LOG = LATTE_STARTER + StringConstants.DOT + "log";
+    public Method getMethod() {
+        return method;
+    }
 
-    public static final String STORAGE = LATTE_STARTER + StringConstants.DOT + "storage";
+    public void setMethod(Method method) {
+        this.method = method;
+    }
 
-    public static final String STORAGE_LOCAL = STORAGE + StringConstants.DOT + "local";
+    public Object[] getArgs() {
+        return args;
+    }
 
-    public static final String SECURITY = LATTE_STARTER + StringConstants.DOT + "security";
+    public void setArgs(Object[] args) {
+        this.args = args;
+    }
 
-    public static final String SECURITY_PASSWORD = SECURITY + StringConstants.DOT + "password";
+    public Object getTarget() {
+        return target;
+    }
 
-    public static final String SECURITY_CRYPTO = SECURITY + StringConstants.DOT + "crypto";
-
-    public static final String SECURITY_LIMITER = SECURITY + StringConstants.DOT + "limiter";
-
-    private PropertiesConstants() {
+    public void setTarget(Object target) {
+        this.target = target;
     }
 }

@@ -24,34 +24,29 @@
 
 
 
-package com.ppxb.latte.starter.core.constant;
+package com.ppxb.latte.starter.security.limiter.annotation;
 
-public class PropertiesConstants {
+import com.ppxb.latte.starter.security.limiter.enums.LimitType;
+import org.redisson.api.RateIntervalUnit;
 
-    public static final String LATTE_STARTER = "latte-starter";
+import java.lang.annotation.*;
 
-    public static final String ENABLED = "enabled";
+@Target({ElementType.METHOD})
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+public @interface RateLimiter {
 
-    public static final String WEB = LATTE_STARTER + StringConstants.DOT + "web";
+    LimitType type() default LimitType.DEFAULT;
 
-    public static final String WEB_CORS = WEB + StringConstants.DOT + "cors";
+    String name() default "";
 
-    public static final String WEB_RESPONSE = WEB + StringConstants.DOT + "response";
+    String key() default "";
 
-    public static final String LOG = LATTE_STARTER + StringConstants.DOT + "log";
+    int rate() default Integer.MAX_VALUE;
 
-    public static final String STORAGE = LATTE_STARTER + StringConstants.DOT + "storage";
+    int interval() default 0;
 
-    public static final String STORAGE_LOCAL = STORAGE + StringConstants.DOT + "local";
+    RateIntervalUnit unit() default RateIntervalUnit.MILLISECONDS;
 
-    public static final String SECURITY = LATTE_STARTER + StringConstants.DOT + "security";
-
-    public static final String SECURITY_PASSWORD = SECURITY + StringConstants.DOT + "password";
-
-    public static final String SECURITY_CRYPTO = SECURITY + StringConstants.DOT + "crypto";
-
-    public static final String SECURITY_LIMITER = SECURITY + StringConstants.DOT + "limiter";
-
-    private PropertiesConstants() {
-    }
+    String message() default "It's too many requests, please try again later";
 }

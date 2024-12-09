@@ -24,34 +24,32 @@
 
 
 
-package com.ppxb.latte.starter.core.constant;
+package com.ppxb.latte.starter.core.util.expression;
 
-public class PropertiesConstants {
+import cn.hutool.core.text.CharSequenceUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-    public static final String LATTE_STARTER = "latte-starter";
+import java.lang.reflect.Method;
 
-    public static final String ENABLED = "enabled";
+public class ExpressionUtils {
 
-    public static final String WEB = LATTE_STARTER + StringConstants.DOT + "web";
+    private static final Logger log = LoggerFactory.getLogger(ExpressionUtils.class);
 
-    public static final String WEB_CORS = WEB + StringConstants.DOT + "cors";
+    private ExpressionUtils() {
+    }
 
-    public static final String WEB_RESPONSE = WEB + StringConstants.DOT + "response";
-
-    public static final String LOG = LATTE_STARTER + StringConstants.DOT + "log";
-
-    public static final String STORAGE = LATTE_STARTER + StringConstants.DOT + "storage";
-
-    public static final String STORAGE_LOCAL = STORAGE + StringConstants.DOT + "local";
-
-    public static final String SECURITY = LATTE_STARTER + StringConstants.DOT + "security";
-
-    public static final String SECURITY_PASSWORD = SECURITY + StringConstants.DOT + "password";
-
-    public static final String SECURITY_CRYPTO = SECURITY + StringConstants.DOT + "crypto";
-
-    public static final String SECURITY_LIMITER = SECURITY + StringConstants.DOT + "limiter";
-
-    private PropertiesConstants() {
+    public static Object eval(String script, Object target, Method method, Object... args) {
+        try {
+            if (CharSequenceUtil.isBlank(script)) {
+                return null;
+            }
+            ExpressionEvaluator expressionEvaluator = new ExpressionEvaluator(script, method);
+            ExpressionInvokeContext invokeContext = new ExpressionInvokeContext(method, args, target);
+            return expressionEvaluator.apply(invokeContext);
+        } catch (Exception e) {
+            log.error("Error occurs when eval script \"{}\" in {} : {}", script, method, e.getMessage(), e);
+            return null;
+        }
     }
 }
