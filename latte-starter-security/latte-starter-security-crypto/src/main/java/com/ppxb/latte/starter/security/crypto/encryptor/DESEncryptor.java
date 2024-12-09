@@ -24,32 +24,14 @@
 
 
 
-package com.ppxb.latte.starter.core.constant;
+package com.ppxb.latte.starter.security.crypto.encryptor;
 
-public class PropertiesConstants {
+import cn.hutool.crypto.symmetric.SymmetricAlgorithm;
 
-    public static final String LATTE_STARTER = "latte-starter";
+public class DESEncryptor extends AbstractSymmetricCryptoEncryptor {
 
-    public static final String ENABLED = "enabled";
-
-    public static final String WEB = LATTE_STARTER + StringConstants.DOT + "web";
-
-    public static final String WEB_CORS = WEB + StringConstants.DOT + "cors";
-
-    public static final String WEB_RESPONSE = WEB + StringConstants.DOT + "response";
-
-    public static final String LOG = LATTE_STARTER + StringConstants.DOT + "log";
-
-    public static final String STORAGE = LATTE_STARTER + StringConstants.DOT + "storage";
-
-    public static final String STORAGE_LOCAL = STORAGE + StringConstants.DOT + "local";
-
-    public static final String SECURITY = LATTE_STARTER + StringConstants.DOT + "security";
-
-    public static final String SECURITY_PASSWORD = SECURITY + StringConstants.DOT + "password";
-
-    public static final String SECURITY_CRYPTO = SECURITY + StringConstants.DOT + "crypto";
-
-    private PropertiesConstants() {
+    @Override
+    protected SymmetricAlgorithm getAlgorithm() {
+        return SymmetricAlgorithm.DES;
     }
 }

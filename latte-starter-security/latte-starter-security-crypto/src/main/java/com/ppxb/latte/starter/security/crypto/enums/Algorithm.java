@@ -24,32 +24,29 @@
 
 
 
-package com.ppxb.latte.starter.core.constant;
+package com.ppxb.latte.starter.security.crypto.enums;
 
-public class PropertiesConstants {
+import com.ppxb.latte.starter.security.crypto.encryptor.*;
 
-    public static final String LATTE_STARTER = "latte-starter";
+public enum Algorithm {
 
-    public static final String ENABLED = "enabled";
+    AES(AESEncryptor.class),
 
-    public static final String WEB = LATTE_STARTER + StringConstants.DOT + "web";
+    DES(DESEncryptor.class),
 
-    public static final String WEB_CORS = WEB + StringConstants.DOT + "cors";
+    PBEWithMD5AndDES(PBEWithMD5AndDESEncryptor.class),
 
-    public static final String WEB_RESPONSE = WEB + StringConstants.DOT + "response";
+    RSA(RSAEncryptor.class),
 
-    public static final String LOG = LATTE_STARTER + StringConstants.DOT + "log";
+    BASE64(Base64Encryptor.class);
 
-    public static final String STORAGE = LATTE_STARTER + StringConstants.DOT + "storage";
+    private final Class<? extends IEncryptor> encryptor;
 
-    public static final String STORAGE_LOCAL = STORAGE + StringConstants.DOT + "local";
+    Algorithm(final Class<? extends IEncryptor> encryptor) {
+        this.encryptor = encryptor;
+    }
 
-    public static final String SECURITY = LATTE_STARTER + StringConstants.DOT + "security";
-
-    public static final String SECURITY_PASSWORD = SECURITY + StringConstants.DOT + "password";
-
-    public static final String SECURITY_CRYPTO = SECURITY + StringConstants.DOT + "crypto";
-
-    private PropertiesConstants() {
+    public Class<? extends IEncryptor> getEncryptor() {
+        return encryptor;
     }
 }

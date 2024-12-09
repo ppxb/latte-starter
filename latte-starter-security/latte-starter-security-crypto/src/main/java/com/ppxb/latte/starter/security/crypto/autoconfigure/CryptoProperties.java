@@ -24,32 +24,51 @@
 
 
 
-package com.ppxb.latte.starter.core.constant;
+package com.ppxb.latte.starter.security.crypto.autoconfigure;
 
-public class PropertiesConstants {
+import com.ppxb.latte.starter.core.constant.PropertiesConstants;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 
-    public static final String LATTE_STARTER = "latte-starter";
+@ConfigurationProperties(PropertiesConstants.SECURITY_CRYPTO)
+public class CryptoProperties {
 
-    public static final String ENABLED = "enabled";
+    private boolean enabled = true;
 
-    public static final String WEB = LATTE_STARTER + StringConstants.DOT + "web";
+    private String password;
 
-    public static final String WEB_CORS = WEB + StringConstants.DOT + "cors";
+    private String publicKey;
 
-    public static final String WEB_RESPONSE = WEB + StringConstants.DOT + "response";
+    private String privateKey;
 
-    public static final String LOG = LATTE_STARTER + StringConstants.DOT + "log";
+    public boolean isEnabled() {
+        return enabled;
+    }
 
-    public static final String STORAGE = LATTE_STARTER + StringConstants.DOT + "storage";
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
 
-    public static final String STORAGE_LOCAL = STORAGE + StringConstants.DOT + "local";
+    public String getPublicKey() {
+        return publicKey;
+    }
 
-    public static final String SECURITY = LATTE_STARTER + StringConstants.DOT + "security";
+    public void setPublicKey(String publicKey) {
+        this.publicKey = publicKey;
+    }
 
-    public static final String SECURITY_PASSWORD = SECURITY + StringConstants.DOT + "password";
+    public String getPassword() {
+        return password;
+    }
 
-    public static final String SECURITY_CRYPTO = SECURITY + StringConstants.DOT + "crypto";
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-    private PropertiesConstants() {
+    public String getPrivateKey() {
+        return privateKey;
+    }
+
+    public void setPrivateKey(String privateKey) {
+        this.privateKey = privateKey;
     }
 }

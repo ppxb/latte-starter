@@ -24,32 +24,23 @@
 
 
 
-package com.ppxb.latte.starter.core.constant;
+package com.ppxb.latte.starter.security.crypto.annotation;
 
-public class PropertiesConstants {
+import com.ppxb.latte.starter.security.crypto.encryptor.IEncryptor;
+import com.ppxb.latte.starter.security.crypto.enums.Algorithm;
 
-    public static final String LATTE_STARTER = "latte-starter";
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
-    public static final String ENABLED = "enabled";
+@Target({ElementType.FIELD, ElementType.PARAMETER})
+@Retention(RetentionPolicy.RUNTIME)
+public @interface FieldEncrypt {
 
-    public static final String WEB = LATTE_STARTER + StringConstants.DOT + "web";
+    Algorithm value() default Algorithm.AES;
 
-    public static final String WEB_CORS = WEB + StringConstants.DOT + "cors";
+    Class<? extends IEncryptor> encryptor() default IEncryptor.class;
 
-    public static final String WEB_RESPONSE = WEB + StringConstants.DOT + "response";
-
-    public static final String LOG = LATTE_STARTER + StringConstants.DOT + "log";
-
-    public static final String STORAGE = LATTE_STARTER + StringConstants.DOT + "storage";
-
-    public static final String STORAGE_LOCAL = STORAGE + StringConstants.DOT + "local";
-
-    public static final String SECURITY = LATTE_STARTER + StringConstants.DOT + "security";
-
-    public static final String SECURITY_PASSWORD = SECURITY + StringConstants.DOT + "password";
-
-    public static final String SECURITY_CRYPTO = SECURITY + StringConstants.DOT + "crypto";
-
-    private PropertiesConstants() {
-    }
+    String password() default "";
 }
