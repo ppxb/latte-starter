@@ -38,16 +38,11 @@ import java.util.Map;
 
 public class ServletUtils {
 
-    private static final String USER_AGENT_HEADER = "User-Agent";
-
     private ServletUtils() {
     }
 
     public static String getBrowser(HttpServletRequest request) {
-        if (null == request) {
-            return null;
-        }
-        return getBrowser(request.getHeader(USER_AGENT_HEADER));
+        return request == null ? null : getBrowser(request.getHeader("User-Agent"));
     }
 
     public static String getBrowser(String userAgentString) {
@@ -56,10 +51,7 @@ public class ServletUtils {
     }
 
     public static String getOs(HttpServletRequest request) {
-        if (null == request) {
-            return null;
-        }
-        return getOs(request.getHeader(USER_AGENT_HEADER));
+        return request == null ? null : getOs(request.getHeader("User-Agent"));
     }
 
     public static String getOs(String userAgentString) {
@@ -70,8 +62,8 @@ public class ServletUtils {
     public static Map<String, String> getHeaderMap(HttpServletResponse response) {
         Collection<String> headerNames = response.getHeaderNames();
         Map<String, String> headerMap = MapUtil.newHashMap(headerNames.size(), true);
-        for (String headerName : headerNames) {
-            headerMap.put(headerName, response.getHeader(headerName));
+        for (String name : headerNames) {
+            headerMap.put(name, response.getHeader(name));
         }
         return headerMap;
     }

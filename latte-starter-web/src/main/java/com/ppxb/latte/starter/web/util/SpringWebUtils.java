@@ -83,13 +83,13 @@ public class SpringWebUtils {
 
     public static void registerResourceHandler(Map<String, String> handlerMap) {
         ApplicationContext applicationContext = SpringUtil.getApplicationContext();
-        Map<String, Object> oldHandlerMap = getResourceHandlerMap();
         ServletContext servletContext = applicationContext.getBean(ServletContext.class);
         ContentNegotiationManager contentNegotiationManager = applicationContext
             .getBean("mvcContentNegotiationManager", ContentNegotiationManager.class);
         UrlPathHelper urlPathHelper = applicationContext.getBean("mvcUrlPathHelper", UrlPathHelper.class);
         ResourceHandlerRegistry resourceHandlerRegistry = new ResourceHandlerRegistry(applicationContext, servletContext, contentNegotiationManager, urlPathHelper);
 
+        Map<String, Object> oldHandlerMap = getResourceHandlerMap();
         handlerMap.forEach((path, location) -> {
             String pathPattern = CharSequenceUtil.appendIfMissing(path, StringConstants.PATH_PATTERN);
             String resourceLocation = CharSequenceUtil.appendIfMissing(location, StringConstants.SLASH);

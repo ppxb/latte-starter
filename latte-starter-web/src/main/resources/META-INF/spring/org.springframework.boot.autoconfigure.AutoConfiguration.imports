@@ -1,1 +1,2 @@
 com.ppxb.latte.starter.web.autoconfigure.cors.CorsAutoConfiguration
+com.ppxb.latte.starter.web.autoconfigure.xss.XssAutoConfiguration
