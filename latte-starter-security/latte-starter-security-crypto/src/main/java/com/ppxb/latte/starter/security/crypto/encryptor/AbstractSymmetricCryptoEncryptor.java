@@ -23,7 +23,6 @@
  */
 
 
-
 package com.ppxb.latte.starter.security.crypto.encryptor;
 
 import cn.hutool.core.text.CharSequenceUtil;
@@ -40,7 +39,7 @@ public abstract class AbstractSymmetricCryptoEncryptor implements IEncryptor {
     private static final Map<String, SymmetricCrypto> CACHE = new ConcurrentHashMap<>();
 
     @Override
-    public String encrypt(String plaintext, String password, String publicKey) throws Exception {
+    public String encrypt(String plaintext, String password, String publicKey) {
         if (CharSequenceUtil.isBlank(plaintext)) {
             return plaintext;
         }
@@ -48,7 +47,7 @@ public abstract class AbstractSymmetricCryptoEncryptor implements IEncryptor {
     }
 
     @Override
-    public String decrypt(String ciphertext, String password, String privateKey) throws Exception {
+    public String decrypt(String ciphertext, String password, String privateKey) {
         if (CharSequenceUtil.isBlank(ciphertext)) {
             return ciphertext;
         }
@@ -67,6 +66,4 @@ public abstract class AbstractSymmetricCryptoEncryptor implements IEncryptor {
     }
 
     protected abstract SymmetricAlgorithm getAlgorithm();
-
-    //    TODO: CONTINUE ENCRYPTORS
 }
