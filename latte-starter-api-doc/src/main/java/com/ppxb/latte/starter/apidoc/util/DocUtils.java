@@ -71,7 +71,6 @@ public class DocUtils {
         if (clazz == null || Object.class.equals(clazz)) {
             return false;
         }
-
         return clazz.isAnnotationPresent(RestController.class) || hasRestControllerAnnotation(clazz.getSuperclass());
     }
 

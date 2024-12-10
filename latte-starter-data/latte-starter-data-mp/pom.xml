@@ -1,0 +1,35 @@
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.ppxb</groupId>
+        <artifactId>latte-starter-data</artifactId>
+        <version>${revision}</version>
+    </parent>
+
+    <artifactId>latte-starter-data-mp</artifactId>
+    <description>Latte Starter 数据访问模块 - MyBatis Plus</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>p6spy</groupId>
+            <artifactId>p6spy</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>me.ahoo.cosid</groupId>
+            <artifactId>cosid-spring-boot-starter</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>com.ppxb</groupId>
+            <artifactId>latte-starter-data-core</artifactId>
+        </dependency>
+    </dependencies>
+</project>

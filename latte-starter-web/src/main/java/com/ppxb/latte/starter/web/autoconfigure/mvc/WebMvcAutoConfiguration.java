@@ -60,9 +60,8 @@ public class WebMvcAutoConfiguration implements WebMvcConfigurer {
         } else {
             converters.addFirst(mappingJackson2HttpMessageConverter);
         }
-        // 自定义 converters 时，需要手动在最前面添加 ByteArrayHttpMessageConverter
-        // 否则 Spring Doc OpenAPI 的 /*/api-docs/**（例如：/v3/api-docs/default）接口响应内容会变为 Base64 编码后的内容，最终导致接口文档解析失败
-        // 详情请参阅：https://github.com/springdoc/springdoc-openapi/issues/2143
+        // 添加ByteArrayHttpMessageConverter解决SpringDoc文档生成问题
+        // see: https://github.com/springdoc/springdoc-openapi/issues/2143
         converters.addFirst(new ByteArrayHttpMessageConverter());
     }
 

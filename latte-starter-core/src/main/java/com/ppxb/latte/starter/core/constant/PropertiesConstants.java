@@ -56,6 +56,10 @@ public class PropertiesConstants {
 
     public static final String SECURITY_LIMITER = SECURITY + StringConstants.DOT + "limiter";
 
+    public static final String DATA_PERMISSION = LATTE_STARTER + StringConstants.DOT + "data-permission";
+
+    public static final String TENANT = LATTE_STARTER + StringConstants.DOT + "tenant";
+
     private PropertiesConstants() {
     }
 }

@@ -1,0 +1,30 @@
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.ppxb</groupId>
+        <artifactId>latte-starter-extension-tenant</artifactId>
+        <version>${revision}</version>
+    </parent>
+
+    <artifactId>latte-starter-extension-tenant-mp</artifactId>
+    <description>Latte Starter 扩展模块 - 多租户 - MyBatis Plus 模块</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-extension</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>dynamic-datasource-spring-boot3-starter</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>com.ppxb</groupId>
+            <artifactId>latte-starter-extension-tenant-core</artifactId>
+        </dependency>
+    </dependencies>
+</project>

@@ -40,6 +40,8 @@
         <module>latte-starter-file</module>
         <module>latte-starter-storage</module>
         <module>latte-starter-security</module>
+        <module>latte-starter-data</module>
+        <module>latte-starter-extension</module>
     </modules>
 
     <build>
