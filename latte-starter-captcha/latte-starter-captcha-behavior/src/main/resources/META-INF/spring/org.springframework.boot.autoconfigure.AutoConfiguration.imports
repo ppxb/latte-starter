@@ -1,0 +1,2 @@
+com.ppxb.latte.starter.captcha.behavior.aotuconfigure.BehaviorCaptchaAutoConfiguration
+com.ppxb.latte.starter.captcha.behavior.aotuconfigure.cache.BehaviorCaptchaCacheAutoConfiguration

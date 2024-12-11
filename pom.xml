@@ -42,6 +42,8 @@
         <module>latte-starter-security</module>
         <module>latte-starter-data</module>
         <module>latte-starter-extension</module>
+        <module>latte-starter-messaging</module>
+        <module>latte-starter-captcha</module>
     </modules>
 
     <build>

@@ -301,175 +301,203 @@
             </dependency>
 
             <!-- Latte Starter -->
-            <!-- Extension Module - Crud Core -->
+            <!-- 扩展模块 - CRUD - 核心模块 -->
             <dependency>
                 <groupId>com.ppxb</groupId>
                 <artifactId>latte-starter-extension-crud-core</artifactId>
                 <version>${revision}</version>
             </dependency>
 
-            <!-- Extension Module - Crud Mybatis Plus -->
+            <!-- 扩展模块 - CRUD - Mybatis Plus -->
             <dependency>
                 <groupId>com.ppxb</groupId>
                 <artifactId>latte-starter-extension-crud-mp</artifactId>
                 <version>${revision}</version>
             </dependency>
 
-            <!-- Extension Module - Data Permission - Core -->
+            <!-- 扩展模块 - 数据权限 - 核心模块 -->
             <dependency>
                 <groupId>com.ppxb</groupId>
                 <artifactId>latte-starter-extension-datapermission-core</artifactId>
                 <version>${revision}</version>
             </dependency>
 
-            <!-- Extension Module - Data Permission - Mybatis Plus -->
+            <!-- 扩展模块 - 数据权限 - Mybatis Plus -->
             <dependency>
                 <groupId>com.ppxb</groupId>
                 <artifactId>latte-starter-extension-datapermission-mp</artifactId>
                 <version>${revision}</version>
             </dependency>
 
-            <!-- Extension Module - Tenant - Core -->
+            <!-- 扩展模块 - 多租户 - 核心模块 -->
             <dependency>
                 <groupId>com.ppxb</groupId>
                 <artifactId>latte-starter-extension-tenant-core</artifactId>
                 <version>${revision}</version>
             </dependency>
 
-            <!-- Extension Module - Tenant - Mybatis Plus -->
+            <!-- 扩展模块 - 多租户 - Mybatis Plus -->
             <dependency>
                 <groupId>com.ppxb</groupId>
                 <artifactId>latte-starter-extension-tenant-mp</artifactId>
                 <version>${revision}</version>
             </dependency>
 
-            <!-- Auth Module - Just Auth -->
+            <!-- 认证模块 - Just Auth -->
             <dependency>
                 <groupId>com.ppxb</groupId>
                 <artifactId>latte-starter-auth-justauth</artifactId>
                 <version>${revision}</version>
             </dependency>
 
-            <!-- Auth Module - SaToken -->
+            <!-- 认证模块 - SaToken -->
             <dependency>
                 <groupId>com.ppxb</groupId>
                 <artifactId>latte-starter-auth-satoken</artifactId>
                 <version>${revision}</version>
             </dependency>
 
-            <!-- Data Module - Core -->
+            <!-- 数据访问模块 - 核心模块 -->
             <dependency>
                 <groupId>com.ppxb</groupId>
                 <artifactId>latte-starter-data-core</artifactId>
                 <version>${revision}</version>
             </dependency>
 
-            <!-- Data Module - Mybatis Plus -->
+            <!-- 数据访问模块 - Mybatis Plus -->
             <dependency>
                 <groupId>com.ppxb</groupId>
                 <artifactId>latte-starter-data-mp</artifactId>
                 <version>${revision}</version>
             </dependency>
 
-            <!-- Cache Module - Redisson -->
+            <!-- 缓存模块 - Redisson -->
             <dependency>
                 <groupId>com.ppxb</groupId>
                 <artifactId>latte-starter-cache-redisson</artifactId>
                 <version>${revision}</version>
             </dependency>
 
-            <!-- Cache Module - JetCache -->
+            <!-- 缓存模块 - JetCache -->
             <dependency>
                 <groupId>com.ppxb</groupId>
                 <artifactId>latte-starter-cache-jetcache</artifactId>
                 <version>${revision}</version>
             </dependency>
 
-            <!-- Cache Module - Spring Cache -->
+            <!-- 缓存模块 - Spring Cache -->
             <dependency>
                 <groupId>com.ppxb</groupId>
                 <artifactId>latte-starter-cache-springcache</artifactId>
                 <version>${revision}</version>
             </dependency>
 
-            <!-- File Module - Excel -->
+            <!-- 消息模块 - 邮件 -->
+            <dependency>
+                <groupId>com.ppxb</groupId>
+                <artifactId>latte-starter-messaging-mail</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <!-- 消息模块 - WebSocket -->
+            <dependency>
+                <groupId>com.ppxb</groupId>
+                <artifactId>latte-starter-messaging-websocket</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <!-- 验证码模块 - 行为验证码 -->
+            <dependency>
+                <groupId>com.ppxb</groupId>
+                <artifactId>latte-starter-captcha-behavior</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <!-- 验证码模块 - 图形验证码 -->
+            <dependency>
+                <groupId>com.ppxb</groupId>
+                <artifactId>latte-starter-captcha-graphic</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <!-- 文件模块 - Excel -->
             <dependency>
                 <groupId>com.ppxb</groupId>
                 <artifactId>latte-starter-file-excel</artifactId>
                 <version>${revision}</version>
             </dependency>
 
-            <!-- Storage Module - Local -->
+            <!-- 存储模块 - 本地存储 -->
             <dependency>
                 <groupId>com.ppxb</groupId>
                 <artifactId>latte-starter-storage-local</artifactId>
                 <version>${revision}</version>
             </dependency>
 
-            <!-- Log Module - Core Module -->
+            <!-- 日志模块 - 核心模块 -->
             <dependency>
                 <groupId>com.ppxb</groupId>
                 <artifactId>latte-starter-log-core</artifactId>
                 <version>${revision}</version>
             </dependency>
 
-            <!-- Log Module - Interceptor Module -->
+            <!-- 日志模块 - 拦截器模块 -->
             <dependency>
                 <groupId>com.ppxb</groupId>
                 <artifactId>latte-starter-log-interceptor</artifactId>
                 <version>${revision}</version>
             </dependency>
 
-            <!-- Web Module -->
+            <!-- Web 模块 -->
             <dependency>
                 <groupId>com.ppxb</groupId>
                 <artifactId>latte-starter-web</artifactId>
                 <version>${revision}</version>
             </dependency>
 
-            <!-- Security Module - Crypto -->
+            <!-- 安全模块 - 加解密模块 -->
             <dependency>
                 <groupId>com.ppxb</groupId>
                 <artifactId>latte-starter-security-crypto</artifactId>
                 <version>${revision}</version>
             </dependency>
 
-            <!-- Security Module - Mask -->
+            <!-- 安全模块 - 脱敏模块 -->
             <dependency>
                 <groupId>com.ppxb</groupId>
                 <artifactId>latte-starter-security-mask</artifactId>
                 <version>${revision}</version>
             </dependency>
 
-            <!-- Security Module - Password Encryptor -->
+            <!-- 安全模块 - 密码编码模块 -->
             <dependency>
                 <groupId>com.ppxb</groupId>
                 <artifactId>latte-starter-security-password</artifactId>
                 <version>${revision}</version>
             </dependency>
 
-            <!-- Security Module - Limiter -->
+            <!-- 安全模块 - 限流模块 -->
             <dependency>
                 <groupId>com.ppxb</groupId>
                 <artifactId>latte-starter-security-limiter</artifactId>
                 <version>${revision}</version>
             </dependency>
 
-            <!-- API Doc Module -->
+            <!-- API 文档模块 -->
             <dependency>
                 <groupId>com.ppxb</groupId>
                 <artifactId>latte-starter-api-doc</artifactId>
                 <version>${revision}</version>
             </dependency>
 
-            <!-- JSON Module - Jackson -->
+            <!-- JSON 模块 - Jackson -->
             <dependency>
                 <groupId>com.ppxb</groupId>
                 <artifactId>latte-starter-json-jackson</artifactId>
                 <version>${revision}</version>
             </dependency>
 
-            <!-- Core Module -->
+            <!-- 核心模块 -->
             <dependency>
                 <groupId>com.ppxb</groupId>
                 <artifactId>latte-starter-core</artifactId>
