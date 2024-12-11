@@ -1,0 +1,24 @@
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.ppxb</groupId>
+        <artifactId>latte-starter-extension-crud</artifactId>
+        <version>${revision}</version>
+    </parent>
+
+    <artifactId>latte-starter-extension-crud-mp</artifactId>
+    <description>Latte Starter 扩展模块 - CRUD（增删改查） - MyBatis Plus 模块</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.ppxb</groupId>
+            <artifactId>latte-starter-extension-crud-core</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.ppxb</groupId>
+            <artifactId>latte-starter-data-mp</artifactId>
+        </dependency>
+    </dependencies>
+</project>

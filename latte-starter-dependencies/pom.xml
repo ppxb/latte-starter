@@ -301,45 +301,73 @@
             </dependency>
 
             <!-- Latte Starter -->
-            <!-- Core Module -->
+            <!-- Extension Module - Crud Core -->
             <dependency>
                 <groupId>com.ppxb</groupId>
-                <artifactId>latte-starter-core</artifactId>
+                <artifactId>latte-starter-extension-crud-core</artifactId>
                 <version>${revision}</version>
             </dependency>
 
-            <!-- Web Module -->
+            <!-- Extension Module - Crud Mybatis Plus -->
             <dependency>
                 <groupId>com.ppxb</groupId>
-                <artifactId>latte-starter-web</artifactId>
+                <artifactId>latte-starter-extension-crud-mp</artifactId>
                 <version>${revision}</version>
             </dependency>
 
-            <!-- API Doc Module -->
+            <!-- Extension Module - Data Permission - Core -->
             <dependency>
                 <groupId>com.ppxb</groupId>
-                <artifactId>latte-starter-api-doc</artifactId>
+                <artifactId>latte-starter-extension-datapermission-core</artifactId>
                 <version>${revision}</version>
             </dependency>
 
-            <!-- Log Module - Core Module -->
+            <!-- Extension Module - Data Permission - Mybatis Plus -->
             <dependency>
                 <groupId>com.ppxb</groupId>
-                <artifactId>latte-starter-log-core</artifactId>
+                <artifactId>latte-starter-extension-datapermission-mp</artifactId>
                 <version>${revision}</version>
             </dependency>
 
-            <!-- Log Module - Interceptor Module -->
+            <!-- Extension Module - Tenant - Core -->
             <dependency>
                 <groupId>com.ppxb</groupId>
-                <artifactId>latte-starter-log-interceptor</artifactId>
+                <artifactId>latte-starter-extension-tenant-core</artifactId>
                 <version>${revision}</version>
             </dependency>
 
-            <!-- JSON Module - Jackson -->
+            <!-- Extension Module - Tenant - Mybatis Plus -->
             <dependency>
                 <groupId>com.ppxb</groupId>
-                <artifactId>latte-starter-json-jackson</artifactId>
+                <artifactId>latte-starter-extension-tenant-mp</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <!-- Auth Module - Just Auth -->
+            <dependency>
+                <groupId>com.ppxb</groupId>
+                <artifactId>latte-starter-auth-justauth</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <!-- Auth Module - SaToken -->
+            <dependency>
+                <groupId>com.ppxb</groupId>
+                <artifactId>latte-starter-auth-satoken</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <!-- Data Module - Core -->
+            <dependency>
+                <groupId>com.ppxb</groupId>
+                <artifactId>latte-starter-data-core</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <!-- Data Module - Mybatis Plus -->
+            <dependency>
+                <groupId>com.ppxb</groupId>
+                <artifactId>latte-starter-data-mp</artifactId>
                 <version>${revision}</version>
             </dependency>
 
@@ -364,20 +392,6 @@
                 <version>${revision}</version>
             </dependency>
 
-            <!-- Auth Module - SaToken -->
-            <dependency>
-                <groupId>com.ppxb</groupId>
-                <artifactId>latte-starter-auth-satoken</artifactId>
-                <version>${revision}</version>
-            </dependency>
-
-            <!-- Auth Module - Just Auth -->
-            <dependency>
-                <groupId>com.ppxb</groupId>
-                <artifactId>latte-starter-auth-justauth</artifactId>
-                <version>${revision}</version>
-            </dependency>
-
             <!-- File Module - Excel -->
             <dependency>
                 <groupId>com.ppxb</groupId>
@@ -389,6 +403,27 @@
             <dependency>
                 <groupId>com.ppxb</groupId>
                 <artifactId>latte-starter-storage-local</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <!-- Log Module - Core Module -->
+            <dependency>
+                <groupId>com.ppxb</groupId>
+                <artifactId>latte-starter-log-core</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <!-- Log Module - Interceptor Module -->
+            <dependency>
+                <groupId>com.ppxb</groupId>
+                <artifactId>latte-starter-log-interceptor</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <!-- Web Module -->
+            <dependency>
+                <groupId>com.ppxb</groupId>
+                <artifactId>latte-starter-web</artifactId>
                 <version>${revision}</version>
             </dependency>
 
@@ -420,45 +455,24 @@
                 <version>${revision}</version>
             </dependency>
 
-            <!-- Data Module - Core -->
+            <!-- API Doc Module -->
             <dependency>
                 <groupId>com.ppxb</groupId>
-                <artifactId>latte-starter-data-core</artifactId>
+                <artifactId>latte-starter-api-doc</artifactId>
                 <version>${revision}</version>
             </dependency>
 
-            <!-- Data Module - Mybatis Plus -->
+            <!-- JSON Module - Jackson -->
             <dependency>
                 <groupId>com.ppxb</groupId>
-                <artifactId>latte-starter-data-mp</artifactId>
+                <artifactId>latte-starter-json-jackson</artifactId>
                 <version>${revision}</version>
             </dependency>
 
-            <!-- Extension Module - Data Permission - Core -->
+            <!-- Core Module -->
             <dependency>
                 <groupId>com.ppxb</groupId>
-                <artifactId>latte-starter-extension-datapermission-core</artifactId>
-                <version>${revision}</version>
-            </dependency>
-
-            <!-- Extension Module - Data Permission - Mybatis Plus -->
-            <dependency>
-                <groupId>com.ppxb</groupId>
-                <artifactId>latte-starter-extension-datapermission-mp</artifactId>
-                <version>${revision}</version>
-            </dependency>
-
-            <!-- Extension Module - Tenant - Core -->
-            <dependency>
-                <groupId>com.ppxb</groupId>
-                <artifactId>latte-starter-extension-tenant-core</artifactId>
-                <version>${revision}</version>
-            </dependency>
-
-            <!-- Extension Module - Tenant - Mybatis Plus -->
-            <dependency>
-                <groupId>com.ppxb</groupId>
-                <artifactId>latte-starter-extension-tenant-mp</artifactId>
+                <artifactId>latte-starter-core</artifactId>
                 <version>${revision}</version>
             </dependency>
         </dependencies>

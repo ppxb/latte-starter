@@ -13,5 +13,6 @@
     
     <modules>
         <module>latte-starter-extension-crud-core</module>
+        <module>latte-starter-extension-crud-mp</module>
     </modules>
 </project>

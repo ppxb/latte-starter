@@ -37,6 +37,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -48,7 +49,9 @@ public class ExcelUtils {
     private ExcelUtils() {
     }
 
-    public static <T> void export() {
+    public static <T> void export(List<T> list, String fileName, Class<T> clazz, HttpServletResponse response) {
+        export(list, fileName, "Sheet1", Collections.emptySet(), clazz, response);
+
     }
 
     public static <T> void export(List<T> list,
