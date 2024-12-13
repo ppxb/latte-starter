@@ -24,34 +24,50 @@
 
 
 
-package com.ppxb.latte.starter.log.core.dao;
+package com.ppxb.latte.starter.log.aop.autoconfigure;
 
-import com.ppxb.latte.starter.log.core.model.LogRecord;
+import com.ppxb.latte.starter.core.constant.PropertiesConstants;
+import com.ppxb.latte.starter.log.core.enums.Include;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 
-import java.util.Collections;
-import java.util.List;
+import java.util.Set;
 
 /**
- * 日志持久层接口
+ * 日志配置属性
  *
  * @author ppxb
  * @since 1.0.0
  */
-public interface LogDao {
+@ConfigurationProperties(PropertiesConstants.LOG)
+public class LogProperties {
 
-    /**
-     * 查询日志列表
-     *
-     * @return 日志列表
-     */
-    default List<LogRecord> list() {
-        return Collections.emptyList();
+    private boolean enabled = true;
+
+    private Boolean isPrint = false;
+
+    private Set<Include> includes = Include.defaultIncludes();
+
+    public boolean isEnabled() {
+        return enabled;
     }
 
-    /**
-     * 记录日志
-     *
-     * @param logRecord 日志信息
-     */
-    void add(LogRecord logRecord);
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public Boolean getIsPrint() {
+        return isPrint;
+    }
+
+    public void setIsPrint(Boolean print) {
+        isPrint = print;
+    }
+
+    public Set<Include> getIncludes() {
+        return includes;
+    }
+
+    public void setIncludes(Set<Include> includes) {
+        this.includes = includes;
+    }
 }

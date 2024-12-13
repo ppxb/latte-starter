@@ -14,6 +14,7 @@
     <modules>
         <module>latte-starter-log-core</module>
         <module>latte-starter-log-interceptor</module>
+        <module>latte-starter-log-aop</module>
     </modules>
 
     <dependencies>

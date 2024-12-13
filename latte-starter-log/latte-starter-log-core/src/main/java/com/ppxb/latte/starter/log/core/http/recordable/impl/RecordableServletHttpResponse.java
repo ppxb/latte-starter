@@ -24,19 +24,27 @@
 
 
 
-package com.ppxb.latte.starter.log.interceptor.handler;
+package com.ppxb.latte.starter.log.core.http.recordable.impl;
 
 import cn.hutool.core.text.CharSequenceUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
-import com.ppxb.latte.starter.log.core.model.RecordableHttpResponse;
+import com.ppxb.latte.starter.log.core.http.recordable.RecordableHttpResponse;
 import com.ppxb.latte.starter.web.util.ServletUtils;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.util.ContentCachingResponseWrapper;
 import org.springframework.web.util.WebUtils;
 
 import java.util.Map;
+import java.util.Optional;
 
+/**
+ * 可记录的 HTTP 响应信息适配器
+ *
+ * @author Andy Wilkinson（Spring Boot Actuator）
+ * @author ppxb
+ * @since 1.0.0
+ */
 public class RecordableServletHttpResponse implements RecordableHttpResponse {
 
     private final HttpServletResponse response;
@@ -60,18 +68,20 @@ public class RecordableServletHttpResponse implements RecordableHttpResponse {
 
     @Override
     public String getBody() {
-        ContentCachingResponseWrapper wrapper = WebUtils
-            .getNativeResponse(response, ContentCachingResponseWrapper.class);
-        if (null != wrapper) {
-            String body = StrUtil.utf8Str(wrapper.getContentAsByteArray());
-            return JSONUtil.isTypeJSON(body) ? body : null;
-        }
-        return null;
+        return Optional.ofNullable(WebUtils.getNativeResponse(response, ContentCachingResponseWrapper.class))
+            .map(wrapper -> {
+                String body = StrUtil.utf8Str(wrapper.getContentAsByteArray());
+                return JSONUtil.isTypeJSON(body) ? body : null;
+            })
+            .orElse(null);
     }
 
     @Override
     public Map<String, Object> getParam() {
         String body = this.getBody();
-        return CharSequenceUtil.isNotBlank(body) && JSONUtil.isTypeJSON(body) ? JSONUtil.toBean(body, Map.class) : null;
+        if (CharSequenceUtil.isNotBlank(body) && JSONUtil.isTypeJSON(body)) {
+            return JSONUtil.toBean(body, Map.class);
+        }
+        return null;
     }
 }

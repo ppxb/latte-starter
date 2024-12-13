@@ -24,10 +24,17 @@
 
 
 
-package com.ppxb.latte.starter.log.core.model;
+package com.ppxb.latte.starter.log.core.http.recordable;
 
 import java.util.Map;
 
+/**
+ * 可记录的 HTTP 响应信息
+ *
+ * @author Andy Wilkinson (Spring Boot Actuator)
+ * @author ppxb
+ * @since 1.0.0
+ */
 public interface RecordableHttpResponse {
 
     int getStatus();

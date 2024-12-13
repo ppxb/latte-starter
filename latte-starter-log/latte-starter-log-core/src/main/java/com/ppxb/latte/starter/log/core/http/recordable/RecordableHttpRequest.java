@@ -24,16 +24,30 @@
 
 
 
-package com.ppxb.latte.starter.log.interceptor.autoconfigure;
+package com.ppxb.latte.starter.log.core.http.recordable;
 
-import com.ppxb.latte.starter.core.constant.PropertiesConstants;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import java.net.URI;
+import java.util.Map;
 
-import java.lang.annotation.*;
+/**
+ * 可记录的 HTTP 请求信息
+ *
+ * @author Andy Wilkinson (Spring Boot Actuator)
+ * @author Phillip Webb (Spring Boot Actuator)
+ * @author ppxb
+ * @since 1.0.0
+ */
+public interface RecordableHttpRequest {
 
-@Target({ElementType.TYPE, ElementType.METHOD})
-@Retention(RetentionPolicy.RUNTIME)
-@Documented
-@ConditionalOnProperty(prefix = PropertiesConstants.LOG, name = PropertiesConstants.ENABLED, havingValue = "true", matchIfMissing = true)
-public @interface ConditionalOnEnabledLog {
+    String getMethod();
+
+    URI getUrl();
+
+    String getIp();
+
+    Map<String, String> getHeaders();
+
+    String getBody();
+
+    Map<String, Object> getParam();
 }

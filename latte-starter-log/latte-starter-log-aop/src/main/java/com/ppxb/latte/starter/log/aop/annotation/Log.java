@@ -24,22 +24,41 @@
 
 
 
-package com.ppxb.latte.starter.log.core.model;
+package com.ppxb.latte.starter.log.aop.annotation;
 
-import java.net.URI;
-import java.util.Map;
+import com.ppxb.latte.starter.log.core.enums.Include;
 
-public interface RecordableHttpRequest {
+import java.lang.annotation.*;
 
-    String getMethod();
+/**
+ * 日志注解
+ * <p>用于接口方法或类上</p>
+ *
+ * @author ppxb
+ * @since 1.0.0
+ */
+@Target({ElementType.METHOD, ElementType.TYPE})
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+public @interface Log {
 
-    URI getUrl();
+    /**
+     * 日志描述 - 接口操作内容（仅用于接口方法上）
+     */
+    String value() default "";
 
-    String getIp();
+    /**
+     * 所属模块（用于接口方法或类上）
+     */
+    String module() default "";
 
-    Map<String, String> getHeaders();
+    /**
+     * 包含信息（在全局配置基础上扩展包含信息）
+     */
+    Include[] includes() default {};
 
-    String getBody();
-
-    Map<String, Object> getParam();
+    /**
+     * 排除信息（在全局配置基础上减少包含信息）
+     */
+    Include[] excludes() default {};
 }

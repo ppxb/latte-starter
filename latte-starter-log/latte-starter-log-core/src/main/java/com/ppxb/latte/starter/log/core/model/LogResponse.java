@@ -27,10 +27,17 @@
 package com.ppxb.latte.starter.log.core.model;
 
 import com.ppxb.latte.starter.log.core.enums.Include;
+import com.ppxb.latte.starter.log.core.http.recordable.RecordableHttpResponse;
 
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * 响应信息
+ *
+ * @author ppxb
+ * @since 1.0.0
+ */
 public class LogResponse {
 
     private Integer status;
@@ -43,11 +50,16 @@ public class LogResponse {
 
     public LogResponse(RecordableHttpResponse response, Set<Include> includes) {
         this.status = response.getStatus();
-        this.headers = includes.contains(Include.RESPONSE_HEADERS) ? response.getHeaders() : null;
+
+        // 设置响应头
+        if (includes.contains(Include.RESPONSE_HEADERS)) {
+            this.headers = response.getHeaders();
+        }
+
+        // 设置响应体或参数
         if (includes.contains(Include.RESPONSE_BODY)) {
             this.body = response.getBody();
-        }
-        if (includes.contains(Include.RESPONSE_PARAM)) {
+        } else if (includes.contains(Include.RESPONSE_PARAM)) {
             this.param = response.getParam();
         }
     }

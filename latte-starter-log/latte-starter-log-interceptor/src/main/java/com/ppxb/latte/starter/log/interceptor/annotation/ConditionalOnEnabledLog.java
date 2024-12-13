@@ -24,24 +24,22 @@
 
 
 
-package com.ppxb.latte.starter.log.core.annotation;
+package com.ppxb.latte.starter.log.interceptor.annotation;
 
-import com.ppxb.latte.starter.log.core.enums.Include;
+import com.ppxb.latte.starter.core.constant.PropertiesConstants;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 
 import java.lang.annotation.*;
 
-@Target({ElementType.METHOD, ElementType.TYPE})
+/**
+ * 是否启用日志记录注解
+ *
+ * @author ppxb
+ * @since 1.0.0
+ */
+@Target({ElementType.TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface Log {
-
-    String value() default "";
-
-    String module() default "";
-
-    Include[] includes() default {};
-
-    Include[] excludes() default {};
-
-    boolean ignore() default false;
+@ConditionalOnProperty(prefix = PropertiesConstants.LOG, name = PropertiesConstants.ENABLED, havingValue = "true", matchIfMissing = true)
+public @interface ConditionalOnEnabledLog {
 }

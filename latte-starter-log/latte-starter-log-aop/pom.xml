@@ -7,22 +7,10 @@
         <version>${revision}</version>
     </parent>
 
-    <artifactId>latte-starter-log-interceptor</artifactId>
-    <description>Latte Starter 日志模块 - 拦截器</description>
+    <artifactId>latte-starter-log-aop</artifactId>
+    <description>ContiNew Starter 日志模块 - AOP</description>
 
     <dependencies>
-        <!-- Swagger -->
-        <dependency>
-            <groupId>io.swagger.core.v3</groupId>
-            <artifactId>swagger-annotations-jakarta</artifactId>
-        </dependency>
-
-        <!-- TTL -->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>transmittable-thread-local</artifactId>
-        </dependency>
-
         <!-- 日志模块 - 核心模块 -->
         <dependency>
             <groupId>com.ppxb</groupId>

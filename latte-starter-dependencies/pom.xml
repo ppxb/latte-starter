@@ -441,6 +441,13 @@
                 <version>${revision}</version>
             </dependency>
 
+            <!-- 日志模块 - AOP -->
+            <dependency>
+                <groupId>com.ppxb</groupId>
+                <artifactId>latte-starter-log-aop</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
             <!-- 日志模块 - 拦截器模块 -->
             <dependency>
                 <groupId>com.ppxb</groupId>

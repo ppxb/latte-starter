@@ -32,13 +32,19 @@ import com.ppxb.latte.starter.log.core.model.LogRecord;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * 日志持久层接口默认实现类（内存）
+ *
+ * @author ppxb
+ * @since 1.0.0
+ */
 public class LogDaoDefaultImpl implements LogDao {
-
-    private final List<LogRecord> logRecords = new LinkedList<>();
 
     private int capacity = 100;
 
     private boolean reverse = true;
+
+    private final List<LogRecord> logRecords = new LinkedList<>();
 
     @Override
     public List<LogRecord> list() {

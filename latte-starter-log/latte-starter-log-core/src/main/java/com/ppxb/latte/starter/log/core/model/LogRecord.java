@@ -27,14 +27,27 @@
 package com.ppxb.latte.starter.log.core.model;
 
 import com.ppxb.latte.starter.log.core.enums.Include;
+import com.ppxb.latte.starter.log.core.http.recordable.RecordableHttpRequest;
+import com.ppxb.latte.starter.log.core.http.recordable.RecordableHttpResponse;
 
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Set;
 
+/**
+ * 日志信息
+ *
+ * @author Dave Syer (Spring Boot Actuator)
+ * @author Andy Wilkinson(Spring Boot Actuator)
+ * @author Phillip Webb (Spring Boot Actuator)
+ * @author ppxb
+ * @since 1.0.0
+ */
 public class LogRecord {
 
-    private final Instant timestamp;
+    private String description;
+
+    private String module;
 
     private LogRequest request;
 
@@ -42,9 +55,9 @@ public class LogRecord {
 
     private Duration timeTaken;
 
-    private String description;
+    private String errorMsg;
 
-    private String module;
+    private final Instant timestamp;
 
     public LogRecord(Instant timestamp, LogRequest request, LogResponse response, Duration timeTaken) {
         this.timestamp = timestamp;
@@ -105,7 +118,16 @@ public class LogRecord {
         this.module = module;
     }
 
+    public String getErrorMsg() {
+        return errorMsg;
+    }
+
+    public void setErrorMsg(String errorMsg) {
+        this.errorMsg = errorMsg;
+    }
+
     public static final class Started {
+
         private final Instant timestamp;
 
         private final RecordableHttpRequest request;

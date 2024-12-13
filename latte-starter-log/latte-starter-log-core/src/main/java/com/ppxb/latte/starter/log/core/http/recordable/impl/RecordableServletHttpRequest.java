@@ -24,14 +24,14 @@
 
 
 
-package com.ppxb.latte.starter.log.interceptor.handler;
+package com.ppxb.latte.starter.log.core.http.recordable.impl;
 
 import cn.hutool.core.text.CharSequenceUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.extra.servlet.JakartaServletUtil;
 import cn.hutool.json.JSONUtil;
 import com.ppxb.latte.starter.core.constant.StringConstants;
-import com.ppxb.latte.starter.log.core.model.RecordableHttpRequest;
+import com.ppxb.latte.starter.log.core.http.recordable.RecordableHttpRequest;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.util.ContentCachingRequestWrapper;
 import org.springframework.web.util.UriUtils;
@@ -42,7 +42,15 @@ import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.Map;
+import java.util.Optional;
 
+/**
+ * 可记录的 HTTP 请求信息适配器
+ *
+ * @author Andy Wilkinson (Spring Boot Actuator)
+ * @author ppxb
+ * @since 1.0.0
+ */
 public class RecordableServletHttpRequest implements RecordableHttpRequest {
 
     private final HttpServletRequest request;
@@ -85,22 +93,29 @@ public class RecordableServletHttpRequest implements RecordableHttpRequest {
 
     @Override
     public String getBody() {
-        ContentCachingRequestWrapper wrapper = WebUtils.getNativeRequest(request, ContentCachingRequestWrapper.class);
-        if (null != wrapper) {
-            String body = StrUtil.utf8Str(wrapper.getContentAsByteArray());
-            return JSONUtil.isTypeJSON(body) ? body : null;
-        }
-        return null;
+        return Optional.ofNullable(WebUtils.getNativeRequest(request, ContentCachingRequestWrapper.class))
+            .map(wrapper -> {
+                String body = StrUtil.utf8Str(wrapper.getContentAsByteArray());
+                return JSONUtil.isTypeJSON(body) ? body : null;
+            })
+            .orElse(null);
     }
 
     @Override
     public Map<String, Object> getParam() {
         String body = getBody();
-        return CharSequenceUtil.isNotBlank(body) && JSONUtil.isTypeJSON(body)
-            ? JSONUtil.toBean(body, Map.class)
-            : Collections.unmodifiableMap(request.getParameterMap());
+        if (CharSequenceUtil.isNotBlank(body) && JSONUtil.isTypeJSON(body)) {
+            return JSONUtil.toBean(body, Map.class);
+        }
+        return Collections.unmodifiableMap(request.getParameterMap());
     }
 
+    /**
+     * 拼接查询参数字符串
+     *
+     * @param queryString 查询参数字符串
+     * @return 拼接后的StringBuilder对象
+     */
     private StringBuilder appendQueryString(String queryString) {
         return new StringBuilder().append(request.getRequestURL())
             .append(StringConstants.QUESTION_MARK)

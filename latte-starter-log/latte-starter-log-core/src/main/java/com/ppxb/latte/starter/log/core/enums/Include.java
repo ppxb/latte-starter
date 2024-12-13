@@ -30,6 +30,12 @@ import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+/**
+ * 日志包含信息枚举
+ *
+ * @author ppxb
+ * @since 1.0.0
+ */
 public enum Include {
 
     /**

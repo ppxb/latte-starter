@@ -24,34 +24,16 @@
 
 
 
-package com.ppxb.latte.starter.log.core.dao;
+package com.ppxb.latte.starter.log.aop.annotation;
 
-import com.ppxb.latte.starter.log.core.model.LogRecord;
+import com.ppxb.latte.starter.core.constant.PropertiesConstants;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 
-import java.util.Collections;
-import java.util.List;
+import java.lang.annotation.*;
 
-/**
- * 日志持久层接口
- *
- * @author ppxb
- * @since 1.0.0
- */
-public interface LogDao {
-
-    /**
-     * 查询日志列表
-     *
-     * @return 日志列表
-     */
-    default List<LogRecord> list() {
-        return Collections.emptyList();
-    }
-
-    /**
-     * 记录日志
-     *
-     * @param logRecord 日志信息
-     */
-    void add(LogRecord logRecord);
+@Target({ElementType.TYPE, ElementType.METHOD})
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+@ConditionalOnProperty(prefix = PropertiesConstants.LOG, name = PropertiesConstants.ENABLED, havingValue = "true", matchIfMissing = true)
+public @interface ConditionalOnEnabledLog {
 }

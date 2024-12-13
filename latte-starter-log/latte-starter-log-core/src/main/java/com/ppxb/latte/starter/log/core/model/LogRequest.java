@@ -30,13 +30,21 @@ import cn.hutool.core.text.CharSequenceUtil;
 import com.ppxb.latte.starter.core.util.ExceptionUtils;
 import com.ppxb.latte.starter.core.util.IpUtils;
 import com.ppxb.latte.starter.log.core.enums.Include;
+import com.ppxb.latte.starter.log.core.http.recordable.RecordableHttpRequest;
 import com.ppxb.latte.starter.web.util.ServletUtils;
 import org.springframework.http.HttpHeaders;
 
 import java.net.URI;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
+/**
+ * 请求信息
+ *
+ * @author ppxb
+ * @since 1.0.0
+ */
 public class LogRequest {
 
     private String method;
@@ -61,30 +69,41 @@ public class LogRequest {
         this.method = request.getMethod();
         this.url = request.getUrl();
         this.ip = request.getIp();
-        this.headers = includes.contains(Include.REQUEST_HEADERS) ? request.getHeaders() : null;
-        if (includes.contains(Include.REQUEST_BODY)) {
-            this.body = request.getBody();
-        }
-        if (includes.contains(Include.REQUEST_PARAM)) {
-            this.param = request.getParam();
-        }
-        this.address = includes.contains(Include.IP_ADDRESS)
-            ? ExceptionUtils.exToNull(() -> IpUtils.getIpv4Address(this.ip))
-            : null;
-        if (null == this.headers) {
-            return;
+
+        // 设置请求头
+        if (includes.contains(Include.REQUEST_HEADERS)) {
+            this.headers = request.getHeaders();
+            parseUserAgent(includes);
         }
 
-        String userAgentString = this.headers.entrySet()
-            .stream()
-            .filter(header -> HttpHeaders.USER_AGENT.equalsIgnoreCase(header.getKey()))
-            .map(Map.Entry::getValue)
-            .findFirst()
-            .orElse(null);
-        if (CharSequenceUtil.isNotBlank(userAgentString)) {
-            this.browser = includes.contains(Include.BROWSER) ? ServletUtils.getBrowser(userAgentString) : null;
-            this.os = includes.contains(Include.OS) ? ServletUtils.getOs(userAgentString) : null;
+        // 设置请求体或参数
+        if (includes.contains(Include.REQUEST_BODY)) {
+            this.body = request.getBody();
+        } else if (includes.contains(Include.REQUEST_PARAM)) {
+            this.param = request.getParam();
         }
+
+        // 解析IP地址
+        if (includes.contains(Include.IP_ADDRESS)) {
+            this.address = ExceptionUtils.exToNull(() -> IpUtils.getIpv4Address(this.ip));
+        }
+    }
+
+    /**
+     * 解析User-Agent信息
+     */
+    private void parseUserAgent(Set<Include> includes) {
+        Optional.ofNullable(this.headers)
+            .map(h -> h.get(HttpHeaders.USER_AGENT))
+            .filter(CharSequenceUtil::isNotBlank)
+            .ifPresent(userAgent -> {
+                if (includes.contains(Include.BROWSER)) {
+                    this.browser = ServletUtils.getBrowser(userAgent);
+                }
+                if (includes.contains(Include.OS)) {
+                    this.os = ServletUtils.getOs(userAgent);
+                }
+            });
     }
 
     public String getMethod() {

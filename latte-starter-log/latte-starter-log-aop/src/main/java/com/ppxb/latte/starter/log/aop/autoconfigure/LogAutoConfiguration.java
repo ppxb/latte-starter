@@ -24,13 +24,13 @@
 
 
 
-package com.ppxb.latte.starter.log.interceptor.autoconfigure;
+package com.ppxb.latte.starter.log.aop.autoconfigure;
 
+import com.ppxb.latte.starter.log.aop.annotation.ConditionalOnEnabledLog;
+import com.ppxb.latte.starter.log.aop.aspect.ConsoleLogAspect;
+import com.ppxb.latte.starter.log.aop.aspect.LogAspect;
 import com.ppxb.latte.starter.log.core.dao.LogDao;
 import com.ppxb.latte.starter.log.core.dao.impl.LogDaoDefaultImpl;
-import com.ppxb.latte.starter.log.interceptor.annotation.ConditionalOnEnabledLog;
-import com.ppxb.latte.starter.log.interceptor.handler.LogFilter;
-import com.ppxb.latte.starter.log.interceptor.handler.LogInterceptor;
 import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,20 +39,12 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplicat
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-/**
- * 日志自动配置
- *
- * @author ppxb
- * @since 1.0.0
- */
 @Configuration
 @ConditionalOnWebApplication(type = ConditionalOnWebApplication.Type.SERVLET)
 @ConditionalOnEnabledLog
 @EnableConfigurationProperties(LogProperties.class)
-public class LogAutoConfiguration implements WebMvcConfigurer {
+public class LogAutoConfiguration {
 
     private static final Logger log = LoggerFactory.getLogger(LogAutoConfiguration.class);
 
@@ -62,15 +54,16 @@ public class LogAutoConfiguration implements WebMvcConfigurer {
         this.logProperties = logProperties;
     }
 
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new LogInterceptor(logDao(), logProperties));
+    @Bean
+    @ConditionalOnMissingBean
+    public LogAspect logAspect() {
+        return new LogAspect(logDao(), logProperties);
     }
 
     @Bean
     @ConditionalOnMissingBean
-    public LogFilter logFilter() {
-        return new LogFilter(logProperties);
+    public ConsoleLogAspect consoleLogAspect() {
+        return new ConsoleLogAspect(logProperties);
     }
 
     @Bean
@@ -81,6 +74,6 @@ public class LogAutoConfiguration implements WebMvcConfigurer {
 
     @PostConstruct
     public void postConstruct() {
-        log.debug("[Latte Starter] - Auto Configuration 'Log-interceptor' completed initialization.");
+        log.debug("[Latte Starter] - Auto Configuration 'Log-aop' completed initialization.");
     }
 }
