@@ -46,9 +46,6 @@ public class R<T> implements Response {
 
     private static final String DEFAULT_ERROR_MSG = PROPERTIES.getDefaultErrorMsg();
 
-    @Schema(description = "时间戳")
-    private final Long timestamp = System.currentTimeMillis();
-
     @Schema(description = "状态码")
     private String code;
 
@@ -61,12 +58,16 @@ public class R<T> implements Response {
     @Schema(description = "响应数据")
     private T data;
 
+    @Schema(description = "时间戳")
+    private Long timestamp = System.currentTimeMillis();
+
     public R() {
     }
 
     public R(String code, String msg) {
         this.setCode(code);
         this.setMsg(msg);
+        this.setTimestamp(System.currentTimeMillis());
     }
 
     public R(String code, String msg, T data) {
@@ -119,6 +120,10 @@ public class R<T> implements Response {
 
     public Long getTimestamp() {
         return timestamp;
+    }
+
+    public void setTimestamp(Long timestamp) {
+        this.timestamp = timestamp;
     }
 
     public String getCode() {
